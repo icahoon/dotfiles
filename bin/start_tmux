@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function main() {
+  local name="$(basename $0)"
+
+  tmux ls | egrep -q "^$name"
+  if [ $? -ne 0 ]; then
+    exec tmux new -s $name
+  else
+    exec tmux attach -t $name
+  fi
+}
+
+main "$@"
