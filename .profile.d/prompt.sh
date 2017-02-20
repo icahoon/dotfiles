@@ -6,4 +6,4 @@ fi
 export PS2="more...[$LOGNAME]: "
 export PS3="Which one? "
 
-PROMPT_DIRTRIM=4
+PROMPT_DIRTRIM=3
