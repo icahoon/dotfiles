@@ -101,7 +101,7 @@ set cursorline
 highlight  CursorLine cterm=None ctermbg=None
 
 " Change Color when entering Insert Mode
-autocmd InsertEnter * highlight  CursorLine cterm=Underline ctermbg=None
+autocmd InsertEnter * highlight  CursorLine cterm=None ctermbg=DarkGrey
 
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine cterm=None ctermbg=None
@@ -119,6 +119,15 @@ noremap <leader>Q :q!<CR>
 noremap <leader>W :wq<CR>
 noremap <leader>N :w<CR>:bn<CR>
 noremap <leader>P :w<CR>:bp<CR>
+
+noremap <leader>a :argd *<CR>:bufdo :argadd %<CR>
+noremap <leader>f :vimgrep /
+noremap <leader>h *
+
+noremap ]p :cprev<CR>
+noremap ]n :cnext<CR>
+noremap ]P :cfirst<CR>
+noremap ]N :clast<CR>
 
 noremap <leader>b :w<CR>:GoBuild<CR>
 
