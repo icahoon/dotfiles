@@ -101,7 +101,7 @@ set cursorline
 highlight  CursorLine cterm=None ctermbg=None
 
 " Change Color when entering Insert Mode
-autocmd InsertEnter * highlight  CursorLine cterm=None ctermbg=DarkGrey
+autocmd InsertEnter * highlight  CursorLine cterm=None ctermbg=DarkBlue
 
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight  CursorLine cterm=None ctermbg=None
