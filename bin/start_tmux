@@ -7,7 +7,7 @@ function main() {
   if [ $? -ne 0 ]; then
     exec tmux new -s $name
   else
-    exec tmux attach -t $name
+    exec tmux attach -d -t $name
   fi
 }
 

@@ -40,6 +40,7 @@ set formatoptions-=cro
 set tags=tags;
 set ai
 set number
+set mouse=""
 
 syntax on
 colorscheme icahoon
@@ -101,10 +102,10 @@ set cursorline
 highlight  CursorLine cterm=None ctermbg=None
 
 " Change Color when entering Insert Mode
-autocmd InsertEnter * highlight  CursorLine cterm=None ctermbg=DarkBlue
+autocmd InsertEnter * highlight  CursorLine cterm=None ctermbg=DarkBlue ctermfg=White
 
 " Revert Color to default when leaving Insert Mode
-autocmd InsertLeave * highlight  CursorLine cterm=None ctermbg=None
+autocmd InsertLeave * highlight  CursorLine cterm=None ctermbg=None ctermfg=None
 
 
 " Leader commands
