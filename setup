@@ -1,0 +1,121 @@
+#!/bin/bash
+
+function setup_brew() {
+  if which brew 2>&1 >/dev/null; then
+    return
+  fi
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}
+
+function setup_vim() {
+  ln -sf ~/.files/.vimrc ~/.vimrc
+  mkdir -p ~/.vim/colors
+  ln -sf ~/.files/.vim/colors/icahoon.vim ~/.vim/colors/icahoon.vim
+}
+
+function setup_vundle() {
+  if [ -d ~/.vim/bundle/Vundle.vim ]; then
+    return
+  fi
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  vim +PluginInstall +qall
+}
+
+function setup_bash() {
+  local i
+  for i in .bash_profile .bashrc .bash_logout; do
+    ln -sf ~/.files/$i ~/$i
+  done
+  mkdir -p ~/.rc.d
+  mkdir -p ~/.profile.d
+  for i in ~/.files/.rc.d/*; do
+    ln -sf $i ~/.rc.d
+  done
+  for i in ~/.files/.profile.d/*; do
+    ln -sf $i ~/.profile.d
+  done
+}
+
+function setup_name() {
+  if [ "$NAME" != "" ]; then
+    return
+  fi
+  local name=""
+  local email=""
+  echo -en "Full name:\t"; read name
+  echo -en "Email address:\t"; read email
+  echo "export NAME=\"$name\"" > ~/.profile.d/name.sh
+  echo "export EMAIL=\"$email\"" >> ~/.profile.d/name.sh
+  source ~/.profile.d/name.sh
+}
+
+function setup_ssh() {
+  if [ ! -d ~/.ssh ]; then
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+  fi
+  if [ -f ~/.ssh/id_rsa ]; then
+    return
+  fi
+  ssh-keygen -t rsa -b 4096 -C $EMAIL
+  echo "export ssh_keys=\"id_rsa\"" > ~/.profile.d/_ssh_keys.sh
+}
+
+function setup_bin() {
+  if [ ! -d ~/bin ]; then
+    mkdir -p ~/bin
+  fi
+  local i
+  for i in ~/.files/bin/*; do
+    ln -sf $i ~/bin
+  done
+}
+
+function setup_fonts() {
+  cp -f ~/.files/.fonts/* ~/Library/Fonts/
+}
+
+function setup_tmux() {
+  if ! which tmux 2>&1 >/dev/null; then
+    brew install tmux
+  fi
+  ln -sf ~/.files/.tmux.conf ~/.tmux.conf
+}
+
+function setup_go() {
+  mkdir -p ~/go
+  if ! which go 2>&1 >/dev/null; then
+    brew install go
+  fi
+  vim +GoInstallBinaries +qall
+}
+
+function setup_git() {
+  if [ "$(git config --get user.email)" != "" ]; then
+    return
+  fi
+  rm -f ~/.gitconfig
+  git config --global user.name "$NAME"
+  git config --global user.email "$EMAIL"
+  git config --global push.default "tracking"
+  git config --global core.editor "vim"
+  git config --global core.autocrlf "false"
+  git config --global core.filemode "false"
+  git config --global merge.tool "vimdiff"
+}
+
+function main() {
+  setup_brew
+  setup_vim
+  setup_vundle
+  setup_bash
+  setup_name
+  setup_ssh
+  setup_bin
+  setup_fonts
+  setup_tmux
+  setup_go
+  setup_git
+}
+
+main "$@"

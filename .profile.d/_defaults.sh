@@ -2,10 +2,6 @@ set -o ignoreeof
 
 umask 0077
 
-# Setup NAME
-#
-export NAME="Ian Cahoon"
-
 # Editor Variables
 #
 set -o vi
