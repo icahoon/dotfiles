@@ -3,6 +3,7 @@
 ## name.sh
 
 export NAME="Ian Cahoon"
+
 export EMAIL="icahoon@gmail.com"
 
 
