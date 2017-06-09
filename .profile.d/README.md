@@ -16,4 +16,4 @@ be loaded by the ssh-agent.
 ## gerrit.sh
 
     export gerrit="<hostname of your gerrit server>"
-    export gerri\t_port=<port used by gerrit server>
+    export gerrit_port=<port used by gerrit server>
