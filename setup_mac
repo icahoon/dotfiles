@@ -83,11 +83,18 @@ function setup_tmux() {
 }
 
 function setup_go() {
+  if [ -d ~/go ]; then
+    return
+  fi
   mkdir -p ~/go
   if ! which go 2>&1 >/dev/null; then
     brew install go
   fi
+  git clone https://github.com/icahoon/tools.git go/tools
+  cd go
+  ./tools/create_go_ws
   vim +GoInstallBinaries +qall
+  cd -
 }
 
 function setup_git() {

@@ -1,0 +1,131 @@
+#!/bin/bash
+
+function setup_vim() {
+  ln -sf ~/.files/.vimrc ~/.vimrc
+  mkdir -p ~/.vim/colors
+  ln -sf ~/.files/.vim/colors/icahoon.vim ~/.vim/colors/icahoon.vim
+}
+
+function setup_vundle() {
+  if [ -d ~/.vim/bundle/Vundle.vim ]; then
+    return
+  fi
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  vim +PluginInstall +qall
+}
+
+function setup_bash() {
+  local i
+  for i in .bash_profile .bashrc .bash_logout; do
+    ln -sf ~/.files/$i ~/$i
+  done
+  mkdir -p ~/.rc.d
+  mkdir -p ~/.profile.d
+  for i in ~/.files/.rc.d/*; do
+    ln -sf $i ~/.rc.d
+  done
+  for i in ~/.files/.profile.d/*; do
+    ln -sf $i ~/.profile.d
+  done
+}
+
+function setup_name() {
+  if [ "$NAME" != "" ]; then
+    return
+  fi
+  local name=""
+  local email=""
+  echo -en "Full name:\t"; read name
+  echo -en "Email address:\t"; read email
+  echo "export NAME=\"$name\"" > ~/.profile.d/name.sh
+  echo "export EMAIL=\"$email\"" >> ~/.profile.d/name.sh
+  source ~/.profile.d/name.sh
+}
+
+function setup_ssh() {
+  if [ ! -d ~/.ssh ]; then
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+  fi
+  #ssh-keygen -t rsa -b 4096 -C $EMAIL
+  if [ ! -f ~/.profile.d/_ssh_keys.sh ]; then
+    echo "export ssh_keys=\"id_rsa\"" > ~/.profile.d/_ssh_keys.sh
+  fi
+}
+
+function setup_bin() {
+  if [ ! -d ~/bin ]; then
+    mkdir -p ~/bin
+  fi
+  local i
+  for i in ~/.files/bin/*; do
+    ln -sf $i ~/bin
+  done
+}
+
+function setup_fonts() {
+  mkdir -p ~/.fonts
+  local i
+  for i in ~/.files/.fonts/*; do
+    ln -sf $i ~/.fonts
+  done
+  fc-cache -v
+}
+
+function setup_tmux() {
+  ln -sf ~/.files/.tmux.conf ~/.tmux.conf
+}
+
+function setup_ws() {
+  if [ ! -d /workspace ]; then
+    return
+  fi
+  mkdir -p /workspace/$USER
+  ln -sf /workspace/$USER ~/ws
+}
+
+function setup_go() {
+  if [ -d ~/go ]; then
+    return
+  fi
+  if [ -d ~/ws ]; then
+    mkdir -p ~/ws/go
+    ln -sf ~/ws/go ~/go
+  else
+    mkdir -p ~/go
+  fi
+  git clone https://github.com/icahoon/tools.git go/tools
+  cd go
+  ./tools/create_go_ws
+  vim +GoInstallBinaries +qall
+  cd - 2>&1 >/dev/null
+}
+
+function setup_git() {
+  if [ "$(git config --get user.email)" != "" ]; then
+    return
+  fi
+  rm -f ~/.gitconfig
+  git config --global user.name "$NAME"
+  git config --global user.email "$EMAIL"
+  git config --global push.default "tracking"
+  git config --global core.editor "vim"
+  git config --global core.autocrlf "false"
+  git config --global core.filemode "false"
+  git config --global merge.tool "vimdiff"
+}
+
+function main() {
+  setup_vim
+  setup_vundle
+  setup_bash
+  setup_name
+  setup_bin
+  setup_fonts
+  setup_tmux
+  setup_ws
+  setup_go
+  setup_git
+}
+
+main "$@"
