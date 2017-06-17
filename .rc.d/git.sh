@@ -3,6 +3,7 @@ alias gd="git diff --color --unified=10 --no-prefix"
 alias gdc="git diff --color --unified=10 --no-prefix --cached"
 alias ga="git add"
 alias gc="git commit -m"
+alias gcn="git commit --amend --no-edit"
 
 alias revert="git checkout --"
 alias unstage="git reset HEAD"
