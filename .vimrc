@@ -77,7 +77,7 @@ inoremap <C-z> <C-o>u
 "
 " za/zA - toggle fold, one level/all levels
 " zc/zC - close fold
-" zo/Zo - open fold
+" zo/zO - open fold
 " zm/zM - fold everything in buffer
 " zr/zR - unfold everything in buffer
 set foldmethod=indent   "fold based on indent
@@ -146,3 +146,8 @@ noremap <leader>7 :b7<CR>
 noremap <leader>8 :b8<CR>
 noremap <leader>9 :b9<CR>
 noremap <leader>0 :b10<CR>
+
+
+" Be able to insert comment at the beginning of a line.
+noremap <C-_> I// <Esc>
+noremap <C-?> ^3x
