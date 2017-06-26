@@ -41,6 +41,7 @@ set tags=tags;
 set ai
 set number
 set mouse=""
+set directory=$HOME/.vim/swapfiles//
 
 syntax on
 colorscheme icahoon

@@ -3,6 +3,7 @@
 function setup_vim() {
   ln -sf ~/.files/.vimrc ~/.vimrc
   mkdir -p ~/.vim/colors
+  mkdir -p ~/.vim/swapfiles
   ln -sf ~/.files/.vim/colors/icahoon.vim ~/.vim/colors/icahoon.vim
 }
 
