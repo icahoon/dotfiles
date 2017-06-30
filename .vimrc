@@ -148,6 +148,8 @@ noremap <leader>8 :b8<CR>
 noremap <leader>9 :b9<CR>
 noremap <leader>0 :b10<CR>
 
+" reload vimrc
+noremap <leader>r :so $MYVIMRC<CR>
 
 " Be able to insert comment at the beginning of a line.
 noremap <C-_> I// <Esc>
