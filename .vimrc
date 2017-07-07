@@ -41,7 +41,8 @@ set tags=tags;
 set ai
 set number
 set mouse=""
-set directory=$HOME/.vim/swapfiles//
+
+set nobackup
 
 syntax on
 colorscheme icahoon
@@ -153,4 +154,3 @@ noremap <leader>r :so $MYVIMRC<CR>
 
 " Be able to insert comment at the beginning of a line.
 noremap <C-_> I// <Esc>
-noremap <C-?> ^3x
