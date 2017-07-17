@@ -43,6 +43,7 @@ set number
 set mouse=""
 
 set nobackup
+set noswapfile
 
 syntax on
 colorscheme icahoon
