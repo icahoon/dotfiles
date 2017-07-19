@@ -1,13 +1,15 @@
 #!/bin/bash
 
+export TMUX_TMPDIR="$HOME/.tmux"
+
 function main() {
   local name="$(basename $0)"
 
   tmux ls | egrep -q "^$name"
   if [ $? -ne 0 ]; then
-    TMPDIR=$HOME/.tmux exec tmux new -s $name
+    exec tmux new -s $name
   else
-    TMPDIR=$HOME/.tmux exec tmux attach -d -t $name
+    exec tmux attach -d -t $name
   fi
 }
 
