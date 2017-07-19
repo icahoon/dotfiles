@@ -77,6 +77,7 @@ function setup_fonts() {
 }
 
 function setup_tmux() {
+  mkdir -p ~/.tmux
   if ! which tmux 2>&1 >/dev/null; then
     brew install tmux
   fi

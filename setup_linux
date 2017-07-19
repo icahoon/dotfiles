@@ -74,6 +74,7 @@ function setup_fonts() {
 }
 
 function setup_tmux() {
+  mkdir -p ~/.tmux
   ln -sf ~/.files/.tmux.conf ~/.tmux.conf
 }
 
