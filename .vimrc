@@ -155,3 +155,7 @@ noremap <leader>r :so $MYVIMRC<CR>
 
 " Be able to insert comment at the beginning of a line.
 noremap <C-_> I// <Esc>
+
+" go boilerplate
+noremap <C-J> oif err != nil {<CR>return err<CR>}<CR><Esc>
+inoremap <C-J> if err != nil {<CR>return err<CR>}<CR>
