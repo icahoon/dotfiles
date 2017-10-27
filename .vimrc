@@ -25,7 +25,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 fixdel
-set backspace=indent.eol,start
+set backspace=indent,eol,start
 set ignorecase
 set smartcase
 set ruler
