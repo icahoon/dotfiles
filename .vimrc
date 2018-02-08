@@ -124,6 +124,7 @@ noremap <leader>Q :q!<CR>
 noremap <leader>W :wq<CR>
 noremap <leader>N :w<CR>:bn<CR>
 noremap <leader>P :w<CR>:bp<CR>
+noremap <leader>x :bd<CR>
 
 noremap <leader>a :argd *<CR>:bufdo :argadd %<CR>
 noremap <leader>f :vimgrep /
@@ -135,6 +136,10 @@ noremap ]P :cfirst<CR>
 noremap ]N :clast<CR>
 
 noremap <leader>b :w<CR>:GoBuild<CR>
+noremap <leader>B :w<CR>:GoBuild<CR>
+noremap <leader>v :w<CR>:GoVet<CR>
+noremap <leader>V :w<CR>:GoVet<CR>
+noremap <leader>L :w<CR>:GoLint<CR>
 
 noremap <leader>s :new \| read !git status<CR>
 noremap <leader>d :new \| read !git diff<CR>

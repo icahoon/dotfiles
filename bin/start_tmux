@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 export TMUX_TMPDIR="$HOME/.tmux"
 

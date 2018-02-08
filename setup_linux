@@ -100,6 +100,8 @@ function setup_go() {
   cd go
   ./tools/create_go_ws
   vim +GoInstallBinaries +qall
+  go get -u github.com/client9/misspell/cmd/misspell
+  go get -u github.com/fzipp/gocyclo
   cd - 2>&1 >/dev/null
 }
 
