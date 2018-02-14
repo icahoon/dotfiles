@@ -53,28 +53,52 @@ autocmd FileType make setlocal noexpandtab
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 
-" remap esc
+" Remap esc
 inoremap \\ <ESC>
 
+" Enter
 " Clear highlighting by hitting return in normal mode
 nnoremap <CR> :noh<CR><CR>
 
+" Ctrl-Up
+" ^[[A on Mac - iTerm2
 nnoremap <Esc>[A (
 inoremap <Esc>[A <C-o>(
+" ^[[1;5A on Linux - Terminator
+nnoremap <Esc>[1;5A (
+inoremap <Esc>[1;5A <C-o>(
+
+" Ctrl-Down
+" ^[[B on Mac - iTerm2
 nnoremap <Esc>[B )
 inoremap <Esc>[B <C-o>)
-"nnoremap <Esc>[C <End>
+" ^[[1;5B on Linux - Terminator
+nnoremap <Esc>[1;5B )
+inoremap <Esc>[1;5B <C-o>)
+
+" Ctrl-Right
+" ^[[C on Mac - iTerm2
 nnoremap <Esc>[C w
 inoremap <Esc>[C <C-o>w
-"nnoremap <Esc>[D <Home>
+" ^[[1;5C on Linux - Terminator
+nnoremap <Esc>[1;5C w
+inoremap <Esc>[1;5C <C-o>w
+
+" Ctrl-Left
+" ^[[D on Mac - iTerm2
 nnoremap <Esc>[D b
 inoremap <Esc>[D <C-o>b
+" ^[[1;5D on Linux - Terminator
+nnoremap <Esc>[1;5D b
+inoremap <Esc>[1;5D <C-o>b
 
-" delete in normal and insert mode
+" Del
+" Delete in normal and insert mode
 nnoremap <Esc>[3~ x
 inoremap <Esc>[3~ <C-o>x
 
-" undo in insert mode
+" Ctrl-Z
+" Undo in insert mode
 inoremap <C-z> <C-o>u
 
 " Folding
@@ -113,38 +137,60 @@ autocmd InsertLeave * highlight  CursorLine cterm=None ctermbg=None ctermfg=None
 
 
 " Leader commands
+"-----------------------------------------------
 let mapleader = ","
+" Quit - ,q
 noremap <leader>q :q<CR>
+" Save - ,w
 noremap <leader>w :w<CR>
+" Next file - ,n
 noremap <leader>n :bn<CR>
+" Previous file - ,p
 noremap <leader>p :bp<CR>
+" Swap files - ,,
 noremap <leader><leader> :b#<CR>
 
+" Force quit - ,Q
 noremap <leader>Q :q!<CR>
+" Save and quit - ,W
 noremap <leader>W :wq<CR>
+" Save and next file - ,N
 noremap <leader>N :w<CR>:bn<CR>
+" Save and previous file - ,P
 noremap <leader>P :w<CR>:bp<CR>
+" Remove file from buffer - ,x
 noremap <leader>x :bd<CR>
 
-noremap <leader>a :argd *<CR>:bufdo :argadd %<CR>
-noremap <leader>f :vimgrep /
+" Highlight word under cursor - ,h
 noremap <leader>h *
 
+" Goto previous error - ]p
 noremap ]p :cprev<CR>
+" Goto next error - ]n
 noremap ]n :cnext<CR>
+" Goto first error - ]P
 noremap ]P :cfirst<CR>
+" Goto last errir - ]N
 noremap ]N :clast<CR>
 
+" Run GoBuild - ,b or ,B
 noremap <leader>b :w<CR>:GoBuild<CR>
 noremap <leader>B :w<CR>:GoBuild<CR>
+" Run GoVet - ,v or ,V  
+" GoVet is problematic. This only works well if your current directory is the same as the files being vetted.
 noremap <leader>v :w<CR>:GoVet<CR>
 noremap <leader>V :w<CR>:GoVet<CR>
+" Run GoLint - ,L
 noremap <leader>L :w<CR>:GoLint<CR>
 
+" Run git status in new window
 noremap <leader>s :new \| read !git status<CR>
+" Run git diff in new window
 noremap <leader>d :new \| read !git diff<CR>
 
+" List all buffers - ,l
 noremap <leader>l :ls<CR>:buffer<Space>
+" Nth buffer - ,#  i.e. ,1 ,2 ,3 etc
 noremap <leader>1 :b1<CR>
 noremap <leader>2 :b2<CR>
 noremap <leader>3 :b3<CR>
@@ -156,12 +202,14 @@ noremap <leader>8 :b8<CR>
 noremap <leader>9 :b9<CR>
 noremap <leader>0 :b10<CR>
 
-" reload vimrc
+" Reload vimrc - ,r
 noremap <leader>r :so $MYVIMRC<CR>
 
+" Ctrl - /
 " Be able to insert comment at the beginning of a line.
 noremap <C-_> I// <Esc>
 
+" Ctrl-J
 " go boilerplate
 noremap <C-J> oif err != nil {<CR>return err<CR>}<CR><Esc>
 inoremap <C-J> if err != nil {<CR>return err<CR>}<CR>
