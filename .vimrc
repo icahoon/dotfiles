@@ -176,10 +176,16 @@ noremap ]N :clast<CR>
 " Run GoBuild - ,b or ,B
 noremap <leader>b :w<CR>:GoBuild<CR>
 noremap <leader>B :w<CR>:GoBuild<CR>
+
 " Run GoVet - ,v or ,V  
 " GoVet is problematic. This only works well if your current directory is the same as the files being vetted.
 noremap <leader>v :w<CR>:GoVet<CR>
 noremap <leader>V :w<CR>:GoVet<CR>
+
+" Run GoTest - ,t or ,T
+noremap <leader>t :w<CR>:GoTest<CR>
+noremap <leader>T :w<CR>:GoTest<CR>
+
 " Run GoLint - ,L
 noremap <leader>L :w<CR>:GoLint<CR>
 
