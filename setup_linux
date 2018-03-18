@@ -120,6 +120,13 @@ function setup_git() {
   git config --global merge.tool "vimdiff"
 }
 
+function setup_terminator() {
+  mkdir -p ~/.config/terminator
+  ln -sf ~/.files/.config/terminator/config ~/.config/terminator/config
+  mkdir -p ~/.gnome/apps
+  ln -sf ~/.files/.gnome/apps/terminator.desktop ~/.gnome/apps/terminator.desktop
+}
+
 function main() {
   setup_vim
   setup_vundle
@@ -131,6 +138,7 @@ function main() {
   setup_ws
   setup_go
   setup_git
+  setup_terminator
 }
 
 main "$@"

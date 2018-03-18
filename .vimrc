@@ -161,6 +161,9 @@ noremap <leader>P :w<CR>:bp<CR>
 " Remove file from buffer - ,x
 noremap <leader>x :bd<CR>
 
+noremap <leader>j :set paste<CR>
+noremap <leader>J :set nopaste<CR>
+
 " Highlight word under cursor - ,h
 noremap <leader>h *
 
@@ -174,17 +177,21 @@ noremap ]P :cfirst<CR>
 noremap ]N :clast<CR>
 
 " Run GoBuild - ,b or ,B
-noremap <leader>b :w<CR>:GoBuild<CR>
-noremap <leader>B :w<CR>:GoBuild<CR>
+noremap <leader>b :w<CR>:GoImports<CR>:GoBuild<CR>
+noremap <leader>B :w<CR>:GoImports<CR>:GoBuild<CR>
+
+" Run GoTest - ,t or ,T
+noremap <leader>t :w<CR>:GoImports<CR>:GoTest<CR>
+noremap <leader>T :w<CR>:GoImports<CR>:GoTest<CR>
 
 " Run GoVet - ,v or ,V  
 " GoVet is problematic. This only works well if your current directory is the same as the files being vetted.
 noremap <leader>v :w<CR>:GoVet<CR>
 noremap <leader>V :w<CR>:GoVet<CR>
 
-" Run GoTest - ,t or ,T
-noremap <leader>t :w<CR>:GoTest<CR>
-noremap <leader>T :w<CR>:GoTest<CR>
+" Run GoImports - ,i or ,I
+noremap <leader>i :w<CR>:GoImports<CR>
+noremap <leader>I :w<CR>:GoImports<CR>
 
 " Run GoLint - ,L
 noremap <leader>L :w<CR>:GoLint<CR>
