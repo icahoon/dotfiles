@@ -114,6 +114,9 @@ function setup_git() {
   git config --global core.autocrlf "false"
   git config --global core.filemode "false"
   git config --global merge.tool "vimdiff"
+
+  git config --global core.excludesfile ~/.gitignore_global
+  ln -sf ~/.files/.gitignore_global ~/.gitignore_global
 }
 
 function main() {
