@@ -5,3 +5,6 @@ if which tmux >/dev/null 2>&1 && tmux ls >/dev/null 2>&1; then
   tmux ls 2>/dev/null
 fi
 
+cd ~/go
+. ./env
+
