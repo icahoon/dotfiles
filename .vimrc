@@ -41,7 +41,8 @@ set formatoptions-=cro
 set tags=tags;
 set ai
 set number
-set mouse=""
+set mouse="a"
+set hlsearch
 
 set nobackup
 set noswapfile
