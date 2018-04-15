@@ -215,6 +215,9 @@ noremap <leader>8 :b8<CR>
 noremap <leader>9 :b9<CR>
 noremap <leader>0 :b10<CR>
 
+noremap <leader>m :set nonumber<CR>
+noremap <leader>M :set number<CR>
+
 " Reload vimrc - ,r
 noremap <leader>r :so $MYVIMRC<CR>
 
