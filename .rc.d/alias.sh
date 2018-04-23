@@ -12,7 +12,7 @@ alias today='date +%Y-%m-%d'
 
 # Typos
 #----------------------------------
-alias dc="cd"
+alias dc="docker-compose"
 alias grpe="grep"
 alias xit="exit"
 

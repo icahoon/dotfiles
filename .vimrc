@@ -7,6 +7,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'fatih/vim-go'
+Plugin 'ctrlpvim/crtlp.vim'
 Plugin 'elzr/vim-json'
 Plugin 'scrooloose/nerdtree' 
 
@@ -193,6 +194,8 @@ noremap <leader>V :w<CR>:GoVet<CR>
 " Run GoImports - ,i or ,I
 noremap <leader>i :w<CR>:GoImports<CR>
 noremap <leader>I :w<CR>:GoImports<CR>
+
+noremap <leader>t :GoAlternate<CR>
 
 " Run GoLint - ,L
 noremap <leader>L :w<CR>:GoLint<CR>
