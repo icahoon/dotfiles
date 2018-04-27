@@ -1,7 +1,8 @@
 #!/bin/bash
 
-#if [[ "$debug" == "yes" ]]; then set -x; fi
+if [[ "$debug" == "yes" ]]; then set -x; fi
 
+declare -r hostname="${hostname:-$(hostname)}"
 
 function is_alive() {
   return $(kill -s 0 $1 &>/dev/null)
@@ -37,7 +38,7 @@ function kill_ssh_agent() {
 }
 
 function main() {
-  local ssh_agent_file="$HOME/.ssh/agent.$(hostname)"
+  local ssh_agent_file="$HOME/.ssh/agent.$hostname"
 
   if [[ "$1" == "kill" ]]; then
     kill_ssh_agent $ssh_agent_file
