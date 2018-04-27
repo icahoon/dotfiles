@@ -7,4 +7,5 @@ fi
 
 cd ~/go
 . ./env
+cd - &>/dev/null
 

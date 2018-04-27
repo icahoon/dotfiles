@@ -195,7 +195,7 @@ noremap <leader>V :w<CR>:GoVet<CR>
 noremap <leader>i :w<CR>:GoImports<CR>
 noremap <leader>I :w<CR>:GoImports<CR>
 
-noremap <leader>t :GoAlternate<CR>
+noremap <leader>a :GoAlternate<CR>
 
 " Run GoLint - ,L
 noremap <leader>L :w<CR>:GoLint<CR>
@@ -227,7 +227,7 @@ noremap <leader>r :so $MYVIMRC<CR>
 
 " Ctrl - /
 " Be able to insert comment at the beginning of a line.
-noremap <C-_> I// <Esc>
+noremap <C-_> I// <Esc>hhj
 
 " Ctrl-J
 " go boilerplate
