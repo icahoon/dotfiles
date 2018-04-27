@@ -2,7 +2,7 @@
 
 if [[ "$debug" == "yes" ]]; then set -x; fi
 
-declare -r hostname="${hostname:-$(hostname)}"
+declare hostname="${hostname:-$(hostname)}"
 
 function is_alive() {
   return $(kill -s 0 $1 &>/dev/null)
