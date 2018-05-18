@@ -1,6 +1,7 @@
 set -o ignoreeof
 
 umask 0077
+shopt -s direxpand
 
 # Editor Variables
 #

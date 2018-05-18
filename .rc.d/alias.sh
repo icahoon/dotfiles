@@ -15,4 +15,5 @@ alias today='date +%Y-%m-%d'
 alias dc="docker-compose"
 alias grpe="grep"
 alias xit="exit"
+alias exot="exit"
 

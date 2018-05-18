@@ -129,13 +129,14 @@ map <C-n> :NERDTreeToggle<CR>
 set cursorline 
 
 " Default Colors for CursorLine
-highlight  CursorLine cterm=None ctermbg=None
+highlight CursorLine cterm=None ctermbg=None
 
 " Change Color when entering Insert Mode
-autocmd InsertEnter * highlight  CursorLine cterm=None ctermbg=DarkBlue ctermfg=White
+autocmd InsertEnter * highlight CursorLine cterm=underline ctermbg=DarkGray ctermfg=None
+"autocmd InsertEnter * highlight CursorLine cterm=None ctermbg=DarkBlue ctermfg=White
 
 " Revert Color to default when leaving Insert Mode
-autocmd InsertLeave * highlight  CursorLine cterm=None ctermbg=None ctermfg=None
+autocmd InsertLeave * highlight CursorLine cterm=None ctermbg=None ctermfg=None
 
 
 " Leader commands
