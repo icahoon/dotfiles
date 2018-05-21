@@ -202,9 +202,9 @@ noremap <leader>a :GoAlternate<CR>
 noremap <leader>L :w<CR>:GoLint<CR>
 
 " Run git status in new window
-noremap <leader>s :new \| read !git status<CR>
+noremap <leader>s :!git status<CR>
 " Run git diff in new window
-noremap <leader>d :new \| read !git diff<CR>
+noremap <leader>d :!git diff %<CR>
 
 " List all buffers - ,l
 noremap <leader>l :ls<CR>:buffer<Space>
