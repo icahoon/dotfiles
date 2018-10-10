@@ -23,3 +23,8 @@ if [ "$(uname)" = "Darwin" ]; then
 
   stty erase 
 fi
+
+function sf() {
+  local query="$1"; shift
+  grep "$query" $@ | sed -e "s,:.*$,," | sort -u
+}
