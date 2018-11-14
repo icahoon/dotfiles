@@ -51,7 +51,7 @@ set tags=tags;
 set ai
 set number
 set hlsearch
-set scrolloff=20
+set scrolloff=10
 
 set nobackup
 set noswapfile

@@ -10,6 +10,9 @@ alias revert="git checkout --"
 alias unstage="git reset HEAD"
 alias uncommit="git reset --soft HEAD~1"
 
+alias unchanged="git update-index --assume-unchanged"
+alias changed="git update-index --no-assume-unchanged"
+
 alias pull="git pull --rebase"
 alias push="git push origin HEAD:refs/for/master"
 alias pp="pull && push"
