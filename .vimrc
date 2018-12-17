@@ -30,6 +30,8 @@ filetype plugin indent on    " required
 
 let g:rustfmt_autosave = 1
 
+runtime macros/matchit.vim
+
 if !has('nvim')
   fixdel
 endif
@@ -250,3 +252,6 @@ noremap <C-_> I// <Esc>hhj
 " go boilerplate
 noremap <C-J> oif err != nil {<CR>return err<CR>}<CR><Esc>
 inoremap <C-J> if err != nil {<CR>return err<CR>}<CR>
+
+" Save buffers to a session file
+noremap <leader>S :set sessionoptions=buffers<CR>:mksession buffers.vim<CR>
