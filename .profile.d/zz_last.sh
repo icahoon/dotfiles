@@ -9,3 +9,7 @@ cd ~/go
 . ./env
 cd - &>/dev/null
 
+if [[ -f ~/.projects ]]; then
+  . ~/.projects
+fi
+

@@ -119,6 +119,10 @@ function setup_git() {
   ln -sf ~/.files/.gitignore_global ~/.gitignore_global
 }
 
+function setup_dev() {
+  ln -sf ~/.files/.projects ~/.projects
+}
+
 function main() {
   setup_brew
   setup_vim
@@ -131,6 +135,7 @@ function main() {
   setup_tmux
   setup_go
   setup_git
+  setup_dev
 }
 
 main "$@"
