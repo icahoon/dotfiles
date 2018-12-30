@@ -7,9 +7,12 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'fatih/vim-go'
-Plugin 'ctrlpvim/crtlp.vim'
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
 Plugin 'elzr/vim-json'
 Plugin 'scrooloose/nerdtree' 
+Plugin 'ekalinin/Dockerfile.vim'
+"Plugin 'ctrlpvim/crtlp.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -25,7 +28,12 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-fixdel
+let g:rustfmt_autosave = 1
+
+if !has('nvim')
+  fixdel
+endif
+
 set backspace=indent,eol,start
 set ignorecase
 set smartcase
@@ -36,20 +44,25 @@ set bg=light
 set ts=2
 set shiftwidth=2
 set expandtab
-set wrap
+set nowrap
 "set gfn=Monaco\ 10
 set formatoptions-=cro
 set tags=tags;
 set ai
 set number
-set mouse="a"
 set hlsearch
+set scrolloff=10
 
 set nobackup
 set noswapfile
 
+set laststatus=2
+set statusline=[%n]\ %<%f%h%m%=%l,%c\ \ 
+
 syntax on
 colorscheme icahoon
+
+"set mouse=a
 
 autocmd FileType make setlocal noexpandtab
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -132,7 +145,7 @@ set cursorline
 highlight CursorLine cterm=None ctermbg=None
 
 " Change Color when entering Insert Mode
-autocmd InsertEnter * highlight CursorLine cterm=underline ctermbg=DarkGray ctermfg=None
+autocmd InsertEnter * highlight CursorLine cterm=underline ctermfg=None
 "autocmd InsertEnter * highlight CursorLine cterm=None ctermbg=DarkBlue ctermfg=White
 
 " Revert Color to default when leaving Insert Mode
@@ -187,6 +200,8 @@ noremap <leader>B :w<CR>:GoImports<CR>:GoBuild<CR>
 noremap <leader>t :w<CR>:GoImports<CR>:GoTest<CR>
 noremap <leader>T :w<CR>:GoImports<CR>:GoTest<CR>
 
+noremap <leader>c :w<CR>:GoImports<CR>:GoCoverage<CR>
+
 " Run GoVet - ,v or ,V  
 " GoVet is problematic. This only works well if your current directory is the same as the files being vetted.
 noremap <leader>v :w<CR>:GoVet<CR>
@@ -205,6 +220,7 @@ noremap <leader>L :w<CR>:GoLint<CR>
 noremap <leader>s :!git status<CR>
 " Run git diff in new window
 noremap <leader>d :!git diff %<CR>
+noremap <leader>f :new !gofmt -d -e -s %<CR>
 
 " List all buffers - ,l
 noremap <leader>l :ls<CR>:buffer<Space>
