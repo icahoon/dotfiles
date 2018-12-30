@@ -10,3 +10,4 @@ export _github_="$_src_/github.com"
 export _icahoon_="$_github_/icahoon"
 
 export _examples_="$_icahoon_/examples"
+export _servers_="$_icahoon_/servers"
