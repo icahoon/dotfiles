@@ -11,3 +11,5 @@ export _icahoon_="$_github_/icahoon"
 
 export _examples_="$_icahoon_/examples"
 export _servers_="$_icahoon_/servers"
+export _notes_="$_icahoon_/notes"
+export _arc_="$_icahoon_/arc"
