@@ -78,14 +78,6 @@ function setup_tmux() {
   ln -sf ~/.files/.tmux.conf ~/.tmux.conf
 }
 
-function setup_ws() {
-  if [ ! -d /workspace ]; then
-    return
-  fi
-  mkdir -p /workspace/$USER
-  ln -sf /workspace/$USER ~/ws
-}
-
 function setup_go() {
   if [ -d ~/go ]; then
     return
@@ -130,6 +122,10 @@ function setup_terminator() {
   ln -sf ~/.files/.gnome/apps/terminator.desktop ~/.gnome/apps/terminator.desktop
 }
 
+function setup_dev() {
+  ln -sf ~/.files/.projects ~/.projects
+}
+
 function main() {
   setup_vim
   setup_vundle
@@ -138,10 +134,10 @@ function main() {
   setup_bin
   setup_fonts
   setup_tmux
-  setup_ws
   setup_go
   setup_git
   setup_terminator
+  setup_dev
 }
 
 main "$@"

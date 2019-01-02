@@ -22,46 +22,22 @@
 [layouts]
   [[default]]
     [[[child0]]]
-      fullscreen = True
-      last_active_term = 66d14e43-4023-4348-895e-fd0be83300c5
+      fullscreen = False
+      last_active_term = 013851b3-d404-4b47-a761-ba1e3f2043bf
       last_active_window = True
       maximised = False
       order = 0
       parent = ""
-      position = 0:0
-      size = 2560, 1440
+      position = 1920:41
+      size = 1920, 2082
       title = hunter
       type = Window
-    [[[child1]]]
+    [[[terminal1]]]
       order = 0
       parent = child0
-      position = 847
-      ratio = 0.331506849315
-      type = HPaned
-    [[[child3]]]
-      order = 1
-      parent = child1
-      position = 858
-      ratio = 0.502636203866
-      type = HPaned
-    [[[terminal2]]]
-      order = 0
-      parent = child1
       profile = icahoon
       type = Terminal
       uuid = 013851b3-d404-4b47-a761-ba1e3f2043bf
-    [[[terminal4]]]
-      order = 0
-      parent = child3
-      profile = icahoon
-      type = Terminal
-      uuid = 66d14e43-4023-4348-895e-fd0be83300c5
-    [[[terminal5]]]
-      order = 1
-      parent = child3
-      profile = icahoon
-      type = Terminal
-      uuid = f22759d6-a61d-4f79-937b-80400e551f62
 [plugins]
 [profiles]
   [[default]]
@@ -76,8 +52,11 @@
     copy_on_selection = True
     cursor_color = "#8ae234"
     cursor_color_fg = False
+    font = Go Mono Semi-Bold 10
     foreground_color = "#ffffff"
     login_shell = True
     palette = "#2e3436:#e83400:#00cd00:#ffff00:#1009dd:#cd00cd:#00cdcd:#ffffff:#404040:#e83400:#00ff00:#ffff00:#6394ff:#e89ee9:#00ffff:#ffffff"
     scrollback_infinite = True
+    scrollbar_position = hidden
     show_titlebar = False
+    use_system_font = False
