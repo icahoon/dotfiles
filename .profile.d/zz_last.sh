@@ -9,7 +9,14 @@ cd ~/go
 . ./env
 cd - &>/dev/null
 
+if [[ -d ~/.projects ]]; then
+  for _yyz in ~/.projects/*; do
+    source $_yyz
+  done
+  unset _yyz
+fi
+
 if [[ -f ~/.projects ]]; then
-  . ~/.projects
+  source ~/.projects
 fi
 
