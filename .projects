@@ -10,4 +10,7 @@ export _github_="$_src_/github.com"
 export _icahoon_="$_github_/icahoon"
 
 export _examples_="$_icahoon_/examples"
+export _dockerfiles_="$_icahoon_/dockerfiles"
 export _servers_="$_icahoon_/servers"
+export _tinymuck_="$_icahoon_/tinymuck"
+export _tinymud_="$_icahoon_/tinymud"
