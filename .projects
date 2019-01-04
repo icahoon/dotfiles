@@ -6,7 +6,14 @@
 export _github_="$_src_/github.com"
 export _icahoon_="$_github_/icahoon"
 
+export _notes_="$_icahoon_/notes"
 export _examples_="$_icahoon_/examples"
 export _servers_="$_icahoon_/servers"
-export _notes_="$_icahoon_/notes"
+
+export _dotfiles_="$_icahoon_/dotfiles"
+export _dockerfiles_="$_icahoon_/dockerfiles"
+
+export _tinymuck_="$_icahoon_/tinymuck"
+export _tinymud_="$_icahoon_/tinymud"
+
 export _arc_="$_icahoon_/arc"
