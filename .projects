@@ -16,4 +16,5 @@ export _dockerfiles_="$_icahoon_/dockerfiles"
 export _tinymuck_="$_icahoon_/tinymuck"
 export _tinymud_="$_icahoon_/tinymud"
 
+export _made_="$_icahoon_/made"
 export _arc_="$_icahoon_/arc"

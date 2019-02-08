@@ -12,6 +12,7 @@ Plugin 'racer-rust/vim-racer'
 Plugin 'elzr/vim-json'
 Plugin 'scrooloose/nerdtree' 
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'vim-syntastic/syntastic'
 "Plugin 'ctrlpvim/crtlp.vim'
 
 call vundle#end()            " required
@@ -218,8 +219,6 @@ noremap <leader>a :GoAlternate<CR>
 " Run GoLint - ,L
 noremap <leader>L :w<CR>:GoLint<CR>
 
-" Run git status in new window
-noremap <leader>s :!git status<CR>
 " Run git diff in new window
 noremap <leader>d :!git diff %<CR>
 noremap <leader>f :new !gofmt -d -e -s %<CR>
@@ -254,4 +253,7 @@ noremap <C-J> oif err != nil {<CR>return err<CR>}<CR><Esc>
 inoremap <C-J> if err != nil {<CR>return err<CR>}<CR>
 
 " Save buffers to a session file
-noremap <leader>S :set sessionoptions=buffers<CR>:mksession buffers.vim<CR>
+noremap <leader>S :set sessionoptions=buffers<CR>:mksession Session.vim<CR>
+
+noremap <leader>R :SyntasticReset<CR>
+

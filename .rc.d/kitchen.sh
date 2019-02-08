@@ -1,1 +1,6 @@
 alias k="kitchen"
+alias kc="kitchen converge"
+alias kv="kitchen verify"
+alias kls="kitchen list"
+alias kl="kitchen login"
+alias kd="kitchen destroy"

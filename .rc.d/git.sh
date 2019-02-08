@@ -1,6 +1,6 @@
 alias gs="git status"
-alias gd="git diff --color --unified=10 --no-prefix"
-alias gdc="git diff --color --unified=10 --no-prefix --cached"
+alias gd="git diff -w --color --unified=10 --no-prefix"
+alias gdc="git diff -w --color --unified=10 --no-prefix --cached"
 alias ga="git add"
 alias gc="git commit -m"
 alias gca="git commit --amend"
