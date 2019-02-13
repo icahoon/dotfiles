@@ -22,10 +22,10 @@ function setup_bash() {
   done
   mkdir -p ~/.rc.d
   mkdir -p ~/.profile.d
-  for i in ~/.files/.rc.d/*; do
+  for i in ~/.files/.rc.d/*.sh; do
     ln -sf $i ~/.rc.d
   done
-  for i in ~/.files/.profile.d/*; do
+  for i in ~/.files/.profile.d/*.sh; do
     ln -sf $i ~/.profile.d
   done
 }
