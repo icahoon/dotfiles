@@ -59,6 +59,8 @@ set scrolloff=10
 set nobackup
 set noswapfile
 
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+
 set laststatus=2
 set statusline=[%n]\ %<%f%h%m%=%l,%c\ \ 
 
@@ -256,4 +258,3 @@ inoremap <C-J> if err != nil {<CR>return err<CR>}<CR>
 noremap <leader>S :set sessionoptions=buffers<CR>:mksession Session.vim<CR>
 
 noremap <leader>R :SyntasticReset<CR>
-
