@@ -70,7 +70,9 @@ function setup_fonts() {
   for i in ~/.files/.fonts/*; do
     ln -sf $i ~/.fonts
   done
-  fc-cache -v
+  if type fc-cache &>/dev/null; then
+    fc-cache -v
+  fi
 }
 
 function setup_tmux() {
@@ -123,7 +125,8 @@ function setup_terminator() {
 }
 
 function setup_dev() {
-  ln -sf ~/.files/.projects ~/.projects
+  mkdir -p ~/.projects
+  ln -sf ~/.files/.projects ~/.projects/icahoon@gmail.com
 }
 
 function main() {

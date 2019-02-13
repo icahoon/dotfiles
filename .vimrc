@@ -37,6 +37,8 @@ if !has('nvim')
   fixdel
 endif
 
+let g:go_version_warning = 0
+
 set backspace=indent,eol,start
 set ignorecase
 set smartcase
