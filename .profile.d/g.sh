@@ -1,6 +1,5 @@
 function g() {
   if [[ "$1" == "" ]]; then
-    if [[ -n "$_go_root_" ]]; then cd $_go_root_; fi
     return
   fi
   if [[ "$1" == "-" ]]; then cd -; return; fi

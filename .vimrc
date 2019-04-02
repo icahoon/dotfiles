@@ -57,6 +57,8 @@ set ai
 set number
 set hlsearch
 set scrolloff=10
+set modeline
+set modelines=5
 
 set nobackup
 set noswapfile
