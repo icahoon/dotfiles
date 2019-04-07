@@ -67,7 +67,7 @@ set laststatus=2
 set statusline=[%n]\ %<%f%h%m%=%l,%c\ \ 
 
 syntax on
-colorscheme icahoon
+colorscheme hyper
 
 "set mouse=a
 

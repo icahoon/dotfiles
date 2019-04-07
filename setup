@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=1090,2034
+
+set -e
+
+git submodule init &>/dev/null
+git submodule update &>/dev/null
+
+source "$(dirname "$0")/lib/common.sh"
+source "$(dirname "$0")/lib/string.sh"
+
+#----------------------------------------------------------------------------
+
+declare setup_dir=""
+setup_dir="$(cd "$(dirname "$0")" && pwd -P)"
+declare -r setup_dir
+
+declare -r jq_url_darwin="https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64"
+declare -r jq_url_linux="https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
+
+if [[ "${home}" == "" ]]; then
+  declare -r home="${HOME}"
+fi
+
+
+#----------------------------------------------------------------------------
+# title
+#----------------------------------------------------------------------------
+function title() {
+  info "\n$*"
+}
+
+#----------------------------------------------------------------------------
+# setup_bin
+#   Create the bin directory and link all the files in dotfiles/bin.
+#----------------------------------------------------------------------------
+function setup_bin() {
+  title "Create ${home}/bin"
+  trap 'failed' RETURN
+
+  # Create $home/bin if required.
+  if [[ ! -d "${home}/bin" ]]; then
+    msg "- creating ${home}/bin"
+    mkdir -p "${home}/bin"
+  fi
+
+  # Link the files.
+  set +o noglob
+  local file
+  for file in ./bin/*; do
+    msg "- linking ${file}"
+    ln -sf "${file}" "${home}/${file}"
+  done
+  set -o noglob
+
+  # Removed files go below.
+  # I.e. rm -f "${home}/bin/foo"
+
+  trap - RETURN
+  success
+}
+
+#----------------------------------------------------------------------------
+# download_jq
+#   If jq isn't present on the system, download it into bin.
+#----------------------------------------------------------------------------
+function download_jq() {
+  if [[ -f ${home}/bin/jq ]]; then
+    return "${SUCCESS}"
+  fi
+
+  title "Downloading jq"
+  trap 'failed' RETURN
+
+  local tmp jq_url
+  tmp="jq_url_$(lower "$(uname)")"
+  jq_url="${!tmp:-}"
+  msg "- installing ${jq_url}"
+  if [[ "${jq_url}" != "" ]]; then
+    curl "${jq_url}" -o "${home}/bin/jq" &>/dev/null
+  fi
+
+  trap - RETURN
+  success
+}
+
+#----------------------------------------------------------------------------
+# setup_bash
+#   Setup the bash configuration infrastructure. This links the .bash* files
+#   to dotfiles, and creates a .profiles.d and an .rc.d so that we can
+#   make the configuration composable.
+#----------------------------------------------------------------------------
+function setup_bash() {
+  title "Installing bash configuration"
+  trap 'failed' RETURN
+
+  local dir
+  for dir in .profile.d .rc.d; do
+    msg "- creating $dir"
+    mkdir -p "${home}/${dir}"
+  done
+
+  local -a files=(
+    .bash_profile
+    .bashrc
+    .bash_logout
+    .profile.d/_defaults.sh
+    .profile.d/lscolors.sh
+    .profile.d/path.sh
+    .profile.d/prompt.sh
+    .profile.d/zz_last.sh
+  )
+
+  local file
+  for file in "${files[@]}"; do
+    msg "- linking ${file}"
+    ln -sf "./${file}" "${home}/${file}"
+  done
+
+  trap - RETURN
+  success
+}
+
+#----------------------------------------------------------------------------
+
+function main() {
+  cd "${setup_dir}" || true
+  trap 'cd - &>/dev/null' RETURN
+
+  setup_bin
+  download_jq
+  setup_bash
+}
+
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+  main "$@"
+fi
+

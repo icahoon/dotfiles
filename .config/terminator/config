@@ -35,7 +35,7 @@
     [[[terminal1]]]
       order = 0
       parent = child0
-      profile = icahoon
+      profile = hyper
       type = Terminal
       uuid = 013851b3-d404-4b47-a761-ba1e3f2043bf
 [plugins]
@@ -48,7 +48,7 @@
     login_shell = True
     palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#faebd7:#404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff"
     scrollback_infinite = True
-  [[icahoon]]
+  [[hyper]]
     copy_on_selection = True
     cursor_color = "#8ae234"
     cursor_color_fg = False

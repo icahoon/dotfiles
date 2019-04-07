@@ -1,12 +1,12 @@
-if [ "$prompt_host" = "" ]; then
-  prompt_host="orion"
-fi
-if [ "$(uname)" = "Darwin" ]; then
-  export PS1="\n\[\e[00;33m\]\A\[\e[00;37m\] \u@$prompt_host \[\e[00;32m\]\w\[\e[00;37m\]\n>\[\e[0m\] "
+export PS1="\n\[\e[00;33m\]\A\[\e[00;37m\] \u@"
+if [[ "${prompt_host:-}" != "" ]]; then
+  PS1+="${prompt_host}"
 else
-  export PS1="\n\[\e[00;33m\]\A\[\e[00;37m\] \u@\h \[\e[00;32m\]\w\[\e[00;37m\]\n>\[\e[0m\] "
+  PS1+="\h"
 fi
-export PS2="more...[$LOGNAME]: "
+PS1+=" \[\e[00;32m\]\w\[\e[00;37m\]\n>\[\e[0m\] "
+
+export PS2="more...[${LOGNAME}]: "
 export PS3="Which one? "
 
-PROMPT_DIRTRIM=3
+export PROMPT_DIRTRIM=3

@@ -14,20 +14,11 @@ export LESS="-erQM -x${TABSTOP}"
 export PAGER=less
 export EXINIT="set ts=${TABSTOP} sm"
 
-export _bin_="$HOME/bin"
-export _src_="$HOME/src"
-
 # Default encoding
 export LC_CTYPE=en_US.UTF-8
 
 # Mac OS X
 if [ "$(uname)" = "Darwin" ]; then
   # MAC ls Variables
-
   stty erase 
 fi
-
-function sf() {
-  local query="$1"; shift
-  grep "$query" $@ | sed -e "s,:.*$,," | sort -u
-}
