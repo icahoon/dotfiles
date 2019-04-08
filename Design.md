@@ -4,13 +4,17 @@
 
 ## bash configuration
 
+- .profile.d/
+- .rc.d/
 - .bash\_profile
 - .bashrc
 - .bash\_logout
-- .profile.d/
 - .profile.d/\_defaults.sh
-- .rc.d/
-- .rc.d/alias.sh
+- .profile.d/lscolors.sh
+- .profile.d/path.sh
+- .profile.d/prompt.sh
+- .profile.d/zz_last.sh
+- .rc.d/alias.sh 
 
 
 ## docker
@@ -49,8 +53,6 @@
 - $\_keybase\_
 
 
-## path
-
 ## ssh
 - .profile.d/ssh-agent.sh
 - .ssh\_keys.d
@@ -64,7 +66,7 @@
 
 ## tmux
 - .profile.d/tmux.sh
-- bin/start_tmux
+- bin/start\_tmux
 - bin/hunter
 - bin/titan
 - bin/warlock

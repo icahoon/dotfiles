@@ -23,7 +23,6 @@ if [[ "${home}" == "" ]]; then
   declare -r home="${HOME}"
 fi
 
-
 #----------------------------------------------------------------------------
 # title
 #----------------------------------------------------------------------------
@@ -32,32 +31,60 @@ function title() {
 }
 
 #----------------------------------------------------------------------------
+# create directories
+#----------------------------------------------------------------------------
+function create_directories() {
+  local -a dirs=("$@")
+  param_check "${dirs[*]}"
+
+  local dir mode
+  for dir in "${dirs[@]}"; do
+    if [[ -d "${home}/${dir}" ]]; then
+      continue
+    fi
+
+    mode="${dir##*:}"
+    if [[ "${mode}" != "${dir}" ]]; then
+      dir="${dir%%:*}"
+    else
+      mode=""
+    fi
+
+    msg "- creating ${dir}"
+    mkdir -p "${home}/${dir}"
+    if [[ "${mode:-}" != "" ]]; then
+      chmod "${mode}" "${home}/${dir}"
+    fi
+  done
+}
+
+#----------------------------------------------------------------------------
+# link_files
+#----------------------------------------------------------------------------
+function link_files() {
+  local -a files=("$@")
+  param_check "${files[*]}"
+
+  local file
+  for file in "${files[@]}"; do
+    msg "- linking ${file}"
+    ln -sf "${setup_dir}/${file}" "${home}/${file}"
+  done
+}
+
+#----------------------------------------------------------------------------
 # setup_bin
 #   Create the bin directory and link all the files in dotfiles/bin.
 #----------------------------------------------------------------------------
 function setup_bin() {
   title "Create ${home}/bin"
-  trap 'failed' RETURN
+  trap 'failed' EXIT
 
-  # Create $home/bin if required.
-  if [[ ! -d "${home}/bin" ]]; then
-    msg "- creating ${home}/bin"
-    mkdir -p "${home}/bin"
-  fi
+  create_directories "bin"
 
-  # Link the files.
-  set +o noglob
-  local file
-  for file in ./bin/*; do
-    msg "- linking ${file}"
-    ln -sf "${file}" "${home}/${file}"
-  done
-  set -o noglob
+  link_files "bin/tsize"
 
-  # Removed files go below.
-  # I.e. rm -f "${home}/bin/foo"
-
-  trap - RETURN
+  trap - EXIT
   success
 }
 
@@ -66,12 +93,12 @@ function setup_bin() {
 #   If jq isn't present on the system, download it into bin.
 #----------------------------------------------------------------------------
 function download_jq() {
-  if [[ -f ${home}/bin/jq ]]; then
+  if cmd_check "jq"; then
     return "${SUCCESS}"
   fi
 
   title "Downloading jq"
-  trap 'failed' RETURN
+  trap 'failed' EXIT
 
   local tmp jq_url
   tmp="jq_url_$(lower "$(uname)")"
@@ -81,7 +108,7 @@ function download_jq() {
     curl "${jq_url}" -o "${home}/bin/jq" &>/dev/null
   fi
 
-  trap - RETURN
+  trap - EXIT
   success
 }
 
@@ -93,32 +120,183 @@ function download_jq() {
 #----------------------------------------------------------------------------
 function setup_bash() {
   title "Installing bash configuration"
-  trap 'failed' RETURN
+  trap 'failed' EXIT
 
-  local dir
-  for dir in .profile.d .rc.d; do
-    msg "- creating $dir"
-    mkdir -p "${home}/${dir}"
-  done
+  create_directories ".profile.d" ".rc.d"
 
-  local -a files=(
-    .bash_profile
-    .bashrc
-    .bash_logout
-    .profile.d/_defaults.sh
-    .profile.d/lscolors.sh
-    .profile.d/path.sh
-    .profile.d/prompt.sh
-    .profile.d/zz_last.sh
-  )
+  link_files ".bash_profile"  ".bashrc"                ".bash_logout" \
+    ".profile.d/_defaults.sh" ".profile.d/lscolors.sh" ".profile.d/path.sh" \
+    ".profile.d/prompt.sh"    ".profile.d/zz_last.sh"  ".rc.d/alias.sh"
 
-  local file
-  for file in "${files[@]}"; do
-    msg "- linking ${file}"
-    ln -sf "./${file}" "${home}/${file}"
-  done
+  trap - EXIT
+  success
+}
 
-  trap - RETURN
+#----------------------------------------------------------------------------
+# setup_docker
+#----------------------------------------------------------------------------
+function setup_docker() {
+  if ! cmd_check "docker"; then
+    return "${SUCCESS}"
+  fi
+
+  title "Setup docker"
+  trap 'failed' EXIT
+
+  link_files ".rc.d/docker.sh"
+
+  trap - EXIT
+  success
+}
+
+#----------------------------------------------------------------------------
+# setup_fonts
+#----------------------------------------------------------------------------
+function setup_fonts() {
+  title "Setup fonts"
+  trap 'failed' EXIT
+
+  create_directories ".fonts"
+
+  set +o noglob
+  link_files .fonts/*
+  set -o noglob
+
+  if cmd_check "fc-cache"; then
+    fc-cache -v >/dev/null
+  fi
+
+  trap - EXIT
+  success
+}
+
+#----------------------------------------------------------------------------
+# setup_git
+#----------------------------------------------------------------------------
+function setup_git() {
+  title "Setup git"
+  trap 'failed' EXIT
+
+  link_files ".gitignore_global" ".rc.d/git-completion.sh" ".rc.d/git.sh"
+
+  trap - EXIT
+  success
+}
+
+#----------------------------------------------------------------------------
+# setup_nvm
+#----------------------------------------------------------------------------
+function setup_nvm() {
+  title "Setup nvm"
+  trap 'failed' EXIT
+
+  link_files ".profile.d/nvm.sh"
+
+  trap - EXIT
+  success
+}
+
+#----------------------------------------------------------------------------
+# setup_projects
+#----------------------------------------------------------------------------
+function setup_projects() {
+  title "Setup projects"
+  trap 'failed' EXIT
+
+  create_directories ".projects.d"
+
+  link_files ".profile.d/projects.sh" ".rc.d/projects-completion.sh"
+
+  trap - EXIT
+  success
+}
+
+#----------------------------------------------------------------------------
+# setup_rvm
+#----------------------------------------------------------------------------
+function setup_rvm() {
+  title "Setup rvm"
+  trap 'failed' EXIT
+
+  link_files ".profile.d/rvm.sh"
+
+  trap - EXIT
+  success
+}
+
+#----------------------------------------------------------------------------
+# setup_ssh
+#----------------------------------------------------------------------------
+function setup_ssh() {
+  title "Setup ssh"
+  trap 'failed' EXIT
+
+  create_directories ".ssh:0700" ".ssh_keys.d"
+
+  link_files ".profile.d/ssh-agent.sh" "bin/agent"
+
+  trap - EXIT
+  success
+}
+
+#----------------------------------------------------------------------------
+# setup_terminator
+#----------------------------------------------------------------------------
+function setup_terminator() {
+  if ! cmd_check "terminator"; then
+    return "${SUCCESS}"
+  fi
+
+  title "Setup terminator"
+  trap 'failed' EXIT
+
+  create_directories ".config/terminator" ".gnome/apps"
+
+  link_files ".config/terminator/config" ".gnome/apps/terminator.desktop"
+
+  trap - EXIT
+  success
+}
+
+#----------------------------------------------------------------------------
+# setup_tmux
+#----------------------------------------------------------------------------
+function setup_tmux() {
+  if ! cmd_check tmux; then
+    return "${SUCCESS}"
+  fi
+
+  title "Setup tmux"
+  trap 'failed' EXIT
+
+  link_files ".profile.d/tmux.sh"  ".tmux.conf" "bin/start_tmux"
+
+  trap - EXIT
+  success
+}
+
+#----------------------------------------------------------------------------
+# setup_vim
+#----------------------------------------------------------------------------
+function setup_vim() {
+  if ! cmd_check vim; then
+    return "${SUCCESS}"
+  fi
+
+  title "Setup vim"
+  trap 'failed' EXIT
+
+  create_directories ".vim/colors" ".vim/swapfiles" ".vim/bundle"
+
+  link_files ".vimrc" ".vim/colors/hyper"
+
+  if [ ! -d "${home}/.vim/bundle/Vundle.vim" ]; then
+    msg "- installing vundle"
+    git clone "https://github.com/VundleVim/Vundle.vim.git" "${home}/.vim/bundle/Vundle.vim" &>/dev/null
+    vim +PluginInstall +qall --not-a-term >/dev/null
+  fi
+
+  trap - EXIT
   success
 }
 
@@ -130,7 +308,18 @@ function main() {
 
   setup_bin
   download_jq
+
   setup_bash
+  setup_docker
+  setup_fonts
+  setup_git
+  setup_nvm
+  setup_projects
+  setup_rvm
+  setup_ssh
+  setup_terminator
+  setup_tmux
+  setup_vim
 }
 
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
