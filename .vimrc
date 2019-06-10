@@ -13,6 +13,8 @@ Plugin 'elzr/vim-json'
 Plugin 'scrooloose/nerdtree' 
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'hashivim/vim-terraform'
 "Plugin 'ctrlpvim/crtlp.vim'
 
 call vundle#end()            " required
@@ -63,6 +65,7 @@ set modelines=5
 set nobackup
 set noswapfile
 
+let g:syntastic_dockerfile_checkers = [ 'dockerfile_lint' ]
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
 
 set laststatus=2
@@ -160,6 +163,9 @@ autocmd InsertEnter * highlight CursorLine cterm=underline ctermfg=None
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight CursorLine cterm=None ctermbg=None ctermfg=None
 
+" Terraform settings
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 
 " Leader commands
 "-----------------------------------------------
