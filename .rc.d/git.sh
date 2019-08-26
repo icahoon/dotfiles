@@ -1,4 +1,4 @@
-alias gs="git status"
+alias gs="git status; echo '';  git lsignore | sed -e 's/^h /Ignoring /'"
 alias gd="git diff -w --color --unified=10 --no-prefix"
 alias gdc="git diff -w --color --unified=10 --no-prefix --cached"
 alias ga="git add"

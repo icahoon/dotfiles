@@ -61,6 +61,7 @@ set hlsearch
 set scrolloff=10
 set modeline
 set modelines=5
+set mmp=2000000
 
 set nobackup
 set noswapfile
@@ -217,10 +218,9 @@ noremap <leader>T :w<CR>:GoImports<CR>:GoTest<CR>
 
 noremap <leader>c :w<CR>:GoImports<CR>:GoCoverage<CR>
 
-" Run GoVet - ,v or ,V  
-" GoVet is problematic. This only works well if your current directory is the same as the files being vetted.
-noremap <leader>v :w<CR>:GoVet<CR>
-noremap <leader>V :w<CR>:GoVet<CR>
+" Split screen
+noremap <leader>H :new<CR>
+noremap <leader>D :vnew<CR>
 
 " Run GoImports - ,i or ,I
 noremap <leader>i :w<CR>:GoImports<CR>

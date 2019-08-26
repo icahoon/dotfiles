@@ -18,3 +18,9 @@ export _tinymud_="$_icahoon_/tinymud"
 
 export _made_="$_icahoon_/made"
 export _arc_="$_icahoon_/arc"
+
+export _icahoon_dev_="$_src_/icahoon.dev"
+export _dev_="$_icahoon_dev_"
+
+export pkg="$_dev_/pkg"
+export mud="$_dev_/mud"
