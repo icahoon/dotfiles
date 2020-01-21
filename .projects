@@ -22,5 +22,7 @@ export _arc_="$_icahoon_/arc"
 export _icahoon_dev_="$_src_/icahoon.dev"
 export _dev_="$_icahoon_dev_"
 
-export pkg="$_dev_/pkg"
-export mud="$_dev_/mud"
+export _pkg_="$_dev_/pkg"
+export _mud_="$_dev_/mud"
+
+export _research_="$_dev_/research"

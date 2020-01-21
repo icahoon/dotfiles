@@ -6,8 +6,8 @@ shopt -s direxpand
 # Editor Variables
 #
 set -o vi
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=/usr/local/bin/vim
+export VISUAL=/usr/local/bin/vim
 export TABSTOP=8
 export MORE=
 export LESS="-erQM -x${TABSTOP}"
@@ -30,4 +30,12 @@ fi
 function sf() {
   local query="$1"; shift
   grep "$query" $@ | sed -e "s,:.*$,," | sort -u
+}
+
+function f() {
+  find . -type f -exec grep -Hn "${1}" {} \;
+}
+
+function fgo() {
+  find . -type f -name "*.go" -exec grep -Hn "${1}" {} \;
 }

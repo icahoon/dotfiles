@@ -10,11 +10,13 @@ Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
 Plugin 'elzr/vim-json'
-Plugin 'scrooloose/nerdtree' 
+Plugin 'scrooloose/nerdtree'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'hashivim/vim-terraform'
+Plugin 'Chiel92/vim-autoformat'
+"Plugin 'python-mode/python-mode'
 "Plugin 'ctrlpvim/crtlp.vim'
 
 call vundle#end()            " required
@@ -68,9 +70,12 @@ set noswapfile
 
 let g:syntastic_dockerfile_checkers = [ 'dockerfile_lint' ]
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_python_checkers = ['flake8']
+
+"let g:pymode_python = 'python3'
 
 set laststatus=2
-set statusline=[%n]\ %<%f%h%m%=%l,%c\ \ 
+set statusline=[%n]\ %<%f%h%m%=%l,%c\ \
 
 syntax on
 colorscheme icahoon
@@ -80,6 +85,8 @@ colorscheme icahoon
 autocmd FileType make setlocal noexpandtab
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
+
+"au BufWrite * :Autoformat
 
 " Remap esc
 inoremap \\ <ESC>
@@ -152,7 +159,7 @@ map <C-n> :NERDTreeToggle<CR>
 
 
 " Enable CursorLine
-set cursorline 
+set cursorline
 
 " Default Colors for CursorLine
 highlight CursorLine cterm=None ctermbg=None
@@ -232,8 +239,8 @@ noremap <leader>a :GoAlternate<CR>
 noremap <leader>L :w<CR>:GoLint<CR>
 
 " Run git diff in new window
-noremap <leader>d :!git diff %<CR>
-noremap <leader>f :new !gofmt -d -e -s %<CR>
+noremap <leader>d :!git diff -w %<CR>
+noremap <leader>f :Autoformat<CR>
 
 " List all buffers - ,l
 noremap <leader>l :ls<CR>:buffer<Space>
