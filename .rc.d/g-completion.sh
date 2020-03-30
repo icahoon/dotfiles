@@ -8,4 +8,4 @@ _g() {
     fi
   done
 }
-complete -F _g g
+complete -F _g -o default g
