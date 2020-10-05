@@ -1,0 +1,8 @@
+export _arcadium_="${_src_}/arcadium.dev"
+
+export _web_="${_arcadium_}/arcadium.dev"
+
+export _dockerfiles_="${_arcadium_}/dockerfiles"
+export _pkg_="${_arcadium_}/pkg"
+export _mud_="${_arcadium_}/mud"
+

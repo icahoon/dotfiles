@@ -9,15 +9,17 @@ alias cd..='cd ..'
 alias -- -='cd - &>/dev/null'
 alias ~='cd ~'
 alias today='date +%Y-%m-%d'
-alias lsgo='ls -1 *.go | grep -v _test'
-alias lstest='ls -1 *_test.go'
-alias llgo='ls -l *.go | grep -v _test'
-alias lltest='ls -l *_test.go'
+alias ls='ls --color=auto'
+alias lsgo='ls --color=auto -1 *.go | grep -v _test'
+alias lstest='ls --color=auto -1 *_test.go'
+alias llgo='ls --color=auto -l *.go | grep -v _test'
+alias lltest='ls --color=auto -l *_test.go'
 alias vigo='vi $(lsgo)'
 alias vitest='vi $(lstest)'
 
 # Typos
 #----------------------------------
+alias d="docker"
 alias dc="docker-compose"
 alias grpe="grep"
 alias xit="exit"

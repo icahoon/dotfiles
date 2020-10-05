@@ -120,7 +120,8 @@ function setup_git() {
 }
 
 function setup_dev() {
-  ln -sf ~/.files/.projects ~/.projects
+  mkdir -p ~/.projects.d
+  ln -sf ~/.files/.projects ~/.projects.d/icahoon@gmail.com
 }
 
 function main() {

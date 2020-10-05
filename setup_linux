@@ -125,8 +125,8 @@ function setup_terminator() {
 }
 
 function setup_dev() {
-  mkdir -p ~/.projects
-  ln -sf ~/.files/.projects ~/.projects/icahoon@gmail.com
+  mkdir -p ~/.projects.d
+  ln -sf ~/.files/.projects ~/.projects.d/icahoon@gmail.com
 }
 
 function main() {
