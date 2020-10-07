@@ -17,6 +17,7 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'hashivim/vim-terraform'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'PProvost/vim-ps1'
 "Plugin 'python-mode/python-mode'
 "Plugin 'ctrlpvim/crtlp.vim'
 
