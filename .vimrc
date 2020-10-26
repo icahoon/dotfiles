@@ -17,7 +17,8 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'hashivim/vim-terraform'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'PProvost/vim-ps1'
+Plugin 'preservim/tagbar'
+"Plugin 'PProvost/vim-ps1'
 "Plugin 'python-mode/python-mode'
 "Plugin 'ctrlpvim/crtlp.vim'
 
@@ -137,6 +138,10 @@ inoremap <Esc>[3~ <C-o>x
 " Ctrl-Z
 " Undo in insert mode
 inoremap <C-z> <C-o>u
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
+
 
 " Folding
 "
