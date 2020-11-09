@@ -1,0 +1,27 @@
+{
+    "editor.fontSize": 11,
+    "editor.fontFamily": "'Go Mono', Consolas, 'Courier New', monospace",
+    "editor.tokenColorCustomizations": {
+        "comments":  "#585df7",
+        "functions": "#FFFF80",
+        "keywords":  "#FFE000",
+        "numbers":   "#00FFFF",
+        "strings":   "#00EE00",
+        "types":     "#00C0C0",
+        "variables": "#C0C0C0"
+    },
+
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+
+    "terminal.integrated.fontFamily": "Go Mono",
+    "terminal.integrated.fontSize": 11,
+
+    "workbench.colorCustomizations": {
+        "[Default Dark+]": {
+            "editor.background": "#000000",
+            "editor.foreground": "#ffffff",
+            "selection.background": "#A0A0A0"
+        },
+    }
+}
