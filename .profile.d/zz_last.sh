@@ -11,3 +11,5 @@ if [[ -d ~/.projects.d ]]; then
   done
   unset _yyz
 fi
+
+export PATH=/usr/local/go/bin:$PATH

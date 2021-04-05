@@ -22,6 +22,7 @@ alias vitest='vi $(lstest)'
 alias d="docker"
 alias dc="docker-compose"
 alias dcci="docker-compose --file docker-compose.ci.yml"
+alias dct="docker-compose --file docker-compose.tools.yml"
 alias grpe="grep"
 alias xit="exit"
 alias exot="exit"

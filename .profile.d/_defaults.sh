@@ -10,7 +10,7 @@ export EDITOR=/usr/local/bin/vim
 export VISUAL=/usr/local/bin/vim
 export TABSTOP=8
 export MORE=
-export LESS="-erQM -x${TABSTOP}"
+export LESS="-eFrQMX -x${TABSTOP}"
 export PAGER=less
 export EXINIT="set ts=${TABSTOP} sm"
 
@@ -33,9 +33,9 @@ function sf() {
 }
 
 function f() {
-  find . -type f -exec grep -Hn "${1}" {} \;
+  find . -type f -exec grep -Hn "$@" {} \;
 }
 
 function fgo() {
-  find . -type f -name "*.go" -exec grep -Hn "${1}" {} \;
+  find . -type f -name "*.go" -exec grep -Hn "$@" {} \;
 }
