@@ -11,6 +11,7 @@ function pathmunge() {
 pathmunge $HOME/bin
 pathmunge $HOME/bin/$(uname)
 pathmunge $HOME/.local/bin
+
 pathmunge $HOME/.poetry/bin after
 pathmunge /sbin after
 pathmunge /usr/sbin after

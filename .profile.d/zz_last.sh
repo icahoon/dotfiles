@@ -12,4 +12,11 @@ if [[ -d ~/.projects.d ]]; then
   unset _yyz
 fi
 
-export PATH=/usr/local/go/bin:$PATH
+# brew packages
+pathmunge /usr/local/opt/binutils/bin
+pathmunge /usr/local/opt/coreutils/libexec/gnubin after
+pathmunge /usr/local/opt/gnu-sed/libexec/gnubin
+
+# go
+pathmunge /usr/local/go/bin
+
