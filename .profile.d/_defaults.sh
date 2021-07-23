@@ -6,8 +6,8 @@ shopt -s direxpand
 # Editor Variables
 #
 set -o vi
-export EDITOR=/usr/local/bin/vim
-export VISUAL=/usr/local/bin/vim
+export EDITOR=vim
+export VISUAL=vim
 export TABSTOP=8
 export MORE=
 export LESS="-erQM -x${TABSTOP}"
