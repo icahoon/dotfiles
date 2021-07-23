@@ -3,6 +3,7 @@ alias gd="git diff -w --color --unified=10 --no-prefix"
 alias gdc="git diff -w --color --unified=10 --no-prefix --cached"
 alias ga="git add"
 alias gc="git commit -m"
+alias gcs="git commit -S -m"
 alias gca="git commit --amend"
 alias gcn="git commit --amend --no-edit"
 

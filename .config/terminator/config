@@ -1,4 +1,6 @@
 [global_config]
+  handle_size = 1
+  extra_styling = False
   title_transmit_bg_color = "#204a87"
   title_receive_bg_color = "#2e3436"
   inactive_color_offset = 0.909090909091
@@ -59,4 +61,46 @@
       profile = icahoon
       type = Terminal
       uuid = 013851b3-d404-4b47-a761-ba1e3f2043bf
+  [[New Layout]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 0:0
+      maximised = True
+      fullscreen = True
+      size = 3440, 1440
+      title = terminator
+      last_active_term = 420a7101-18d2-4447-a853-6fa019ceed22
+      last_active_window = True
+    [[[child1]]]
+      type = HPaned
+      parent = child0
+      order = 0
+      position = 1147
+      ratio = 0.3339155749636099
+    [[[terminal2]]]
+      type = Terminal
+      parent = child1
+      order = 0
+      profile = icahoon
+      uuid = 013851b3-d404-4b47-a761-ba1e3f2043bf
+    [[[child3]]]
+      type = HPaned
+      parent = child1
+      order = 1
+      position = 1146
+      ratio = 0.5010931351114998
+    [[[terminal4]]]
+      type = Terminal
+      parent = child3
+      order = 0
+      profile = icahoon
+      uuid = 420a7101-18d2-4447-a853-6fa019ceed22
+    [[[terminal5]]]
+      type = Terminal
+      parent = child3
+      order = 1
+      profile = icahoon
+      uuid = c038f684-712f-4e89-a680-e22991f0a1bf
 [plugins]

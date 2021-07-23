@@ -81,22 +81,7 @@ function setup_tmux() {
 }
 
 function setup_go() {
-  if [ -d ~/go ]; then
-    return
-  fi
-  if [ -d ~/ws ]; then
-    mkdir -p ~/ws/go
-    ln -sf ~/ws/go ~/go
-  else
-    mkdir -p ~/go
-  fi
-  git clone https://github.com/icahoon/tools.git go/tools
-  cd go
-  ./tools/create_go_ws
   vim +GoInstallBinaries +qall
-  go get -u github.com/client9/misspell/cmd/misspell
-  go get -u github.com/fzipp/gocyclo
-  cd - 2>&1 >/dev/null
 }
 
 function setup_git() {
