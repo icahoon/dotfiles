@@ -1,0 +1,22 @@
+#
+# Copyright (c) 2018 by Ian Cahoon <icahoon@gmail.com>
+# All rights reserved.
+#
+
+export _dev_="${_src_}/icahoon.dev"
+
+export _blog_="${_dev_}/blog"
+
+export _notes_="${_dev_}/notes"
+export _examples_="${_dev_}/examples"
+export _research_="${_dev_}/research"
+export _sqlx_="${_dev_}/sqlx"
+
+export _dotfiles_="${_dev_}/dotfiles"
+
+export _tinymuck_="${_dev_}/tinymuck"
+export _tinymud_="${_dev_}/tinymud"
+
+export _arc_="${_dev_}/arc"
+
+export _jc_="${_dev_}/jumpcloud"

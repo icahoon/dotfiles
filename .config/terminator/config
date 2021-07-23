@@ -1,24 +1,45 @@
 [global_config]
-  always_split_with_profile = True
+  title_transmit_bg_color = "#204a87"
+  title_receive_bg_color = "#2e3436"
   inactive_color_offset = 0.909090909091
   suppress_multiple_term_dialog = True
-  title_receive_bg_color = "#2e3436"
-  title_transmit_bg_color = "#204a87"
+  always_split_with_profile = True
 [keybindings]
-  copy = <Alt>c
-  full_screen = <Alt>Return
+  go_next = <Alt>Right
+  go_prev = <Alt>Left
   go_left = <Primary>Page_Up
-  go_next = <Alt>bracketright
-  go_prev = <Alt>bracketleft
   go_right = <Primary>Page_Down
-  move_tab_left = None
-  move_tab_right = None
-  next_tab = None
-  paste = <Alt>v
-  prev_tab = None
-  scaled_zoom = <Shift><Alt>Return
   split_horiz = <Shift><Alt>d
   split_vert = <Alt>d
+  copy = <Alt>c
+  paste = <Alt>v
+  move_tab_right = None
+  move_tab_left = None
+  scaled_zoom = <Shift><Alt>Return
+  next_tab = None
+  prev_tab = None
+  full_screen = <Alt>Return
+[profiles]
+  [[default]]
+    background_darkness = 0.0
+    cursor_color = "#8ae234"
+    cursor_color_fg = False
+    font = "Go Smallcaps, Bold 10"
+    scrollback_infinite = True
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#faebd7:#404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff"
+    login_shell = True
+  [[icahoon]]
+    cursor_color = "#8ae234"
+    cursor_color_fg = False
+    font = Go Mono Semi-Bold 9
+    foreground_color = "#ffffff"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scrollback_infinite = True
+    palette = "#2e3436:#e83400:#00cd00:#ffff00:#4060ff:#cd00cd:#00cdcd:#ffffff:#404040:#e83400:#00ff00:#ffff00:#6394ff:#e89ee9:#00ffff:#ffffff"
+    login_shell = True
+    use_system_font = False
+    copy_on_selection = True
 [layouts]
   [[default]]
     [[[child0]]]
@@ -30,7 +51,7 @@
       parent = ""
       position = 1920:41
       size = 1920, 2082
-      title = hunter
+      title = terminator
       type = Window
     [[[terminal1]]]
       order = 0
@@ -39,24 +60,3 @@
       type = Terminal
       uuid = 013851b3-d404-4b47-a761-ba1e3f2043bf
 [plugins]
-[profiles]
-  [[default]]
-    background_darkness = 0.0
-    cursor_color = "#8ae234"
-    cursor_color_fg = False
-    font = "Go Smallcaps, Bold 10"
-    login_shell = True
-    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#faebd7:#404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff"
-    scrollback_infinite = True
-  [[icahoon]]
-    copy_on_selection = True
-    cursor_color = "#8ae234"
-    cursor_color_fg = False
-    font = Go Mono Semi-Bold 10
-    foreground_color = "#ffffff"
-    login_shell = True
-    palette = "#2e3436:#e83400:#00cd00:#ffff00:#1009dd:#cd00cd:#00cdcd:#ffffff:#404040:#e83400:#00ff00:#ffff00:#6394ff:#e89ee9:#00ffff:#ffffff"
-    scrollback_infinite = True
-    scrollbar_position = hidden
-    show_titlebar = False
-    use_system_font = False

@@ -19,9 +19,6 @@ alias vitest='vi $(lstest)'
 
 # Typos
 #----------------------------------
-alias d="docker"
-alias dc="docker-compose"
-alias dcci="docker-compose --file docker-compose.ci.yml"
 alias grpe="grep"
 alias xit="exit"
 alias exot="exit"

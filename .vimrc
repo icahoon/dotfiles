@@ -44,6 +44,7 @@ endif
 
 let g:go_version_warning = 0
 
+set belloff=all
 set backspace=indent,eol,start
 set ignorecase
 set smartcase
