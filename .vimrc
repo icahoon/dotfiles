@@ -205,6 +205,9 @@ noremap <leader>x :bd<CR>
 noremap <leader>j :set paste<CR>
 noremap <leader>J :set nopaste<CR>
 
+" Justify a paragraph
+noremap <leader>y gqG
+
 " Highlight word under cursor - ,h
 noremap <leader>h *
 
