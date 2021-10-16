@@ -59,11 +59,11 @@ highlight Visual     gui=none guifg=#804020 guibg=#ffc0a0 ctermfg=DarkCyan
 " Syntax group
 highlight Comment    gui=none guifg=#23256e guibg=bg      ctermfg=Blue
 highlight Constant   gui=none guifg=#00884c guibg=bg      ctermfg=White
-highlight Error      gui=none guifg=#f8f8f8 guibg=#4040ff term=reverse        ctermbg=Red    ctermfg=White
+highlight Error      gui=none guifg=#f8f8f8 guibg=#4040ff ctermbg=Blue    ctermfg=White
 highlight Identifier gui=none guifg=#b07800 guibg=bg      ctermfg=Yellow
 highlight Ignore     gui=none guifg=bg      guibg=bg      ctermfg=Black
 highlight PreProc    gui=none guifg=#683821 guibg=bg      ctermfg=Yellow
-highlight Special    gui=none guifg=#8040f0 guibg=bg      ctermfg=LightMagenta
+highlight Special    gui=none guifg=#8040f0 guibg=bg      ctermfg=Cyan
 highlight Statement  gui=none guifg=#b64f90 guibg=bg      ctermfg=Yellow
 highlight Todo       gui=none guifg=#ff5050 guibg=white   term=standout       ctermbg=Blue ctermfg=White
 highlight Type       gui=none guifg=#7f0055 guibg=bg      ctermfg=LightGreen

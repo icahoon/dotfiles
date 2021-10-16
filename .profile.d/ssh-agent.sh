@@ -1,5 +1,6 @@
-#echo ""
-#. $HOME/bin/agent
+echo ""
+. $HOME/bin/agent
+ssh-add -l
 #for user in ${!ssh_keys[@]}; do
 #  key=${ssh_keys[$user]}
 #  if [[ -f $HOME/.ssh/$key ]] && ! grep "$user" <(ssh-add -l); then

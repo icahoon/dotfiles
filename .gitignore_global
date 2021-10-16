@@ -41,3 +41,6 @@
  # Vim
  #####
  *.sw?
+
+ #cmd/maverics/*.xml
+ *.backup

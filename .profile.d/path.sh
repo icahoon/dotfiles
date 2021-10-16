@@ -9,10 +9,11 @@ function pathmunge() {
 }
 
 pathmunge $HOME/bin
-pathmunge $HOME/bin/$(uname)
+
+# For yubikey / ykman
 pathmunge $HOME/.local/bin
+
 pathmunge /sbin after
 pathmunge /usr/sbin after
 pathmunge /usr/local/sbin after
-
-pathmunge /usr/local/go/bin
+pathmunge /usr/local/jdk/bin after
