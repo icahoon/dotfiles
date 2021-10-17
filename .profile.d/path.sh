@@ -9,8 +9,9 @@ function pathmunge() {
 }
 
 pathmunge $HOME/bin
-pathmunge $HOME/bin/$(uname)
 pathmunge $HOME/.local/bin
+pathmunge /usr/local/go/bin
+
 pathmunge /sbin after
 pathmunge /usr/sbin after
 pathmunge /usr/local/sbin after

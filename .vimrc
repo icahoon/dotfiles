@@ -1,22 +1,32 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" vim-polyglot settings
+let g:polyglot_disabled = ['sensible']
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'fatih/vim-go'
-Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
 Plugin 'elzr/vim-json'
-Plugin 'moll/vim-node'
-Plugin 'scrooloose/nerdtree'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
-Plugin 'hashivim/vim-terraform'
-Plugin 'Chiel92/vim-autoformat'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'dense-analysis/ale'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'skywind3000/gutentags_plus'
+"Plugin 'junegunn/fzf'
+"Plugin 'junegunn/fzf.vim'
+"Plugin 'rust-lang/rust.vim'
+"Plugin 'racer-rust/vim-racer'
+"Plugin 'hashivim/vim-terraform'
+"Plugin 'moll/vim-node'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'Chiel92/vim-autoformat'
+"Plugin 'nathanaelkane/vim-indent-guides'
 "Plugin 'python-mode/python-mode'
 "Plugin 'ctrlpvim/crtlp.vim'
 
@@ -34,7 +44,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-let g:rustfmt_autosave = 1
+"let g:rustfmt_autosave = 1
 
 runtime macros/matchit.vim
 
@@ -43,6 +53,8 @@ if !has('nvim')
 endif
 
 let g:go_version_warning = 0
+
+setglobal fileencoding=utf-8
 
 set belloff=all
 set backspace=indent,eol,start
@@ -55,6 +67,7 @@ set bg=light
 set ts=2
 set shiftwidth=2
 set expandtab
+set wrap linebreak
 set nowrap
 "set gfn=Monaco\ 10
 set formatoptions-=cro
@@ -66,9 +79,14 @@ set scrolloff=10
 set modeline
 set modelines=5
 set mmp=2000000
+set textwidth=80
 
 set nobackup
 set noswapfile
+
+" Colors
+syntax on
+colorscheme icahoon
 
 let g:syntastic_dockerfile_checkers = [ 'dockerfile_lint' ]
 let g:syntastic_ruby_checkers = ['rubocop', 'mri']
@@ -79,14 +97,55 @@ let g:syntastic_python_checkers = ['flake8']
 set laststatus=2
 set statusline=[%n]\ %<%f%h%m%=%l,%c\ \
 
-syntax on
-colorscheme icahoon
-
 "set mouse=a
 
 autocmd FileType make setlocal noexpandtab
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
+
+"whitespace
+set listchars=tab:\|\ ,trail:·
+highlight SpecialKey ctermfg=DarkGray
+set nolist
+
+"ale settings
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 1
+
+let g:my_ale_toggle_enabled=1
+
+function! ALEToggle()
+  if g:my_ale_toggle_enabled
+    ALEDisable
+    let g:my_ale_toggle_enabled=0
+  else
+    ALEEnable
+    let g:my_ale_toggle_enabled=1
+  endif
+endfunction
+
+nmap <silent> [c <Plug>(ale_previous_wrap)
+nmap <silent> ]c <Plug>(ale_next_wrap)
+
+" spelling
+set spell spelllang=en_us
+set nospell
+" ]s - next misspelled word
+" [s - prev misspelled word
+" z= - autocompletion for word
+" zg - add word to dictionary
+" zw - mark work as correct
+
+
+" gutentags_plus
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_auto_colors = 0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermfg=blue ctermbg=black
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=#202020
 
 "au BufWrite * :Autoformat
 
@@ -95,7 +154,7 @@ inoremap \\ <ESC>
 
 " Enter
 " Clear highlighting by hitting return in normal mode
-nnoremap <CR> :noh<CR><CR>
+nnoremap <cr> :noh<cr><cr>
 
 " Ctrl-Up
 " ^[[A on Mac - iTerm2
@@ -147,7 +206,7 @@ inoremap <C-z> <C-o>u
 " zr/zR - unfold everything in buffer
 set foldmethod=indent   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
-set nofoldenable        "dont fold by default
+set nofoldenable        "don't fold by default
 set foldlevel=1         "this is just what i use
 
 " vim-json settings
@@ -157,7 +216,7 @@ let g:vim_json_syntax_conceal = 0
 " NERDTree settings
 "------------------
 "autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<cr>
 
 
 " Enable CursorLine
@@ -174,95 +233,93 @@ autocmd InsertEnter * highlight CursorLine cterm=underline ctermfg=None
 autocmd InsertLeave * highlight CursorLine cterm=None ctermbg=None ctermfg=None
 
 " Terraform settings
-let g:terraform_align=1
-let g:terraform_fmt_on_save=1
+" let g:terraform_align=1
+" let g:terraform_fmt_on_save=1
 
 " Leader commands
 "-----------------------------------------------
 let mapleader = ","
 " Quit - ,q
-noremap <leader>q :q<CR>
+noremap <leader>q :q<cr>
 " Save - ,w
-noremap <leader>w :w<CR>
+noremap <leader>w :w<cr>
 " Next file - ,n
-noremap <leader>n :bn<CR>
+noremap <leader>n :bn<cr>
 " Previous file - ,p
-noremap <leader>p :bp<CR>
+noremap <leader>p :bp<cr>
 " Swap files - ,,
-noremap <leader><leader> :b#<CR>
+noremap <leader><leader> :b#<cr>
 
 " Force quit - ,Q
-noremap <leader>Q :q!<CR>
-" Save and quit - ,W
-noremap <leader>W :wq<CR>
+noremap <leader>Q :q!<cr>
 " Save and next file - ,N
-noremap <leader>N :w<CR>:bn<CR>
+noremap <leader>N :w<cr>:bn<cr>
 " Save and previous file - ,P
-noremap <leader>P :w<CR>:bp<CR>
+noremap <leader>P :w<cr>:bp<cr>
 " Remove file from buffer - ,x
-noremap <leader>x :bd<CR>
+noremap <leader>x :bd<cr>
 
-noremap <leader>j :set paste<CR>
-noremap <leader>J :set nopaste<CR>
 
 " Highlight word under cursor - ,h
 noremap <leader>h *
 
-" Goto previous error - ]p
-noremap ]p :cprev<CR>
+" Goto previous error - [n
+noremap [n :cprev<cr>
 " Goto next error - ]n
-noremap ]n :cnext<CR>
-" Goto first error - ]P
-noremap ]P :cfirst<CR>
-" Goto last errir - ]N
-noremap ]N :clast<CR>
+noremap ]n :cnext<cr>
+" Goto first error - [N
+noremap [N :cfirst<cr>
+" Goto last error - ]N
+noremap ]N :clast<cr>
+
+" Toggle ALE
+nnoremap <leader>a :call ALEToggle()<cr>
 
 " Run GoBuild - ,b or ,B
-noremap <leader>b :w<CR>:GoImports<CR>:GoBuild<CR>
-noremap <leader>B :w<CR>:GoImports<CR>:GoBuild<CR>
+noremap <leader>b :w<cr>:GoImports<cr>:GoBuild<cr>
+noremap <leader>B :w<cr>:GoImports<cr>:GoBuild<cr>
 
 " Run GoTest - ,t or ,T
-noremap <leader>t :w<CR>:GoImports<CR>:GoTest<CR>
-noremap <leader>T :w<CR>:GoImports<CR>:GoTest<CR>
+noremap <leader>t :w<cr>:GoImports<cr>:GoTest<cr>
+noremap <leader>T :w<cr>:GoImports<cr>:GoTest<cr>
 
-noremap <leader>c :w<CR>:GoImports<CR>:GoCoverage<CR>
+noremap <leader>c :w<cr>:GoImports<cr>:GoCoverage<cr>
 
 " Split screen
-noremap <leader>H :new<CR>
-noremap <leader>D :vnew<CR>
+noremap <leader>H :new<cr>
+noremap <leader>D :vnew<cr>
 
 " Run GoImports - ,i or ,I
-noremap <leader>i :w<CR>:GoImports<CR>
-noremap <leader>I :w<CR>:GoImports<CR>
+noremap <leader>i :w<cr>:GoImports<cr>
+noremap <leader>I :w<cr>:GoImports<cr>
 
-noremap <leader>a :GoAlternate<CR>
-
-" Run GoLint - ,L
-noremap <leader>L :w<CR>:GoLint<CR>
 
 " Run git diff in new window
-noremap <leader>d :!git diff -w %<CR>
-noremap <leader>f :Autoformat<CR>
+noremap <leader>d :!git diff -w %<cr>
+noremap <leader>D :!git diff -w --cached %<cr>
 
 " List all buffers - ,l
-noremap <leader>l :ls<CR>:buffer<Space>
+noremap <leader>l :ls<cr>:buffer<Space>
 " Nth buffer - ,#  i.e. ,1 ,2 ,3 etc
-noremap <leader>1 :b1<CR>
-noremap <leader>2 :b2<CR>
-noremap <leader>3 :b3<CR>
-noremap <leader>4 :b4<CR>
-noremap <leader>5 :b5<CR>
-noremap <leader>6 :b6<CR>
-noremap <leader>7 :b7<CR>
-noremap <leader>8 :b8<CR>
-noremap <leader>9 :b9<CR>
-noremap <leader>0 :b10<CR>
+noremap <leader>1 :b1<cr>
+noremap <leader>2 :b2<cr>
+noremap <leader>3 :b3<cr>
+noremap <leader>4 :b4<cr>
+noremap <leader>5 :b5<cr>
+noremap <leader>6 :b6<cr>
+noremap <leader>7 :b7<cr>
+noremap <leader>8 :b8<cr>
+noremap <leader>9 :b9<cr>
+noremap <leader>0 :b10<cr>
 
-noremap <leader>m :set nonumber<CR>
-noremap <leader>M :set number<CR>
+noremap <leader>j :set paste!<cr>
+noremap <leader>m :set number!<cr>
+noremap <leader>s :set spell!<cr>
+noremap <leader>L :set list!<cr>
+noremap <leader>W :set wrap!<cr>
 
 " Reload vimrc - ,r
-noremap <leader>r :so $MYVIMRC<CR>
+noremap <leader>r :so $MYVIMRC<cr>
 
 " Ctrl - /
 " Be able to insert comment at the beginning of a line.
@@ -270,10 +327,10 @@ noremap <C-_> I// <Esc>hhj
 
 " Ctrl-J
 " go boilerplate
-noremap <C-J> oif err != nil {<CR>return err<CR>}<CR><Esc>
-inoremap <C-J> if err != nil {<CR>return err<CR>}<CR>
+noremap <C-J> oif err != nil {<cr>return err<cr>}<cr><Esc>
+inoremap <C-J> if err != nil {<cr>return err<cr>}<cr>
 
 " Save buffers to a session file
-noremap <leader>S :set sessionoptions=buffers<CR>:mksession Session.vim<CR>
+noremap <leader>S :set sessionoptions=buffers<cr>:mksession Session.vim<cr>
 
-noremap <leader>R :SyntasticReset<CR>
+noremap <leader>R :SyntasticReset<cr>

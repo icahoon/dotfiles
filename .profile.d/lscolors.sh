@@ -36,6 +36,6 @@
 # The default is “exfxcxdxbxegedabagacad"
 
 export CLICOLOR=1
-export LSCOLORS="DxGxBxDxCxEgEdxbxgxcxd"
+#export LSCOLORS="DxGxBxDxCxEgEdxbxgxcxd"
 #export LSCOLORS="exfxcxdxbxegedabagacad"
-#export LSCOLORS="Hxfxcxdxbxegedabagacad"
+export LSCOLORS="Hxfxcxdxbxegedabagacad"
