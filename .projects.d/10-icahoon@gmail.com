@@ -37,3 +37,7 @@ export _grpc_="${_github_}/grpc/grpc-go"
 
 
 export _strata_="${_github_}/trisolaria/ian"
+
+# ---- misc
+
+export _wtf_="${_github_}/benbjohnson/wtf"

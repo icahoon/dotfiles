@@ -15,7 +15,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'dense-analysis/ale'
+"Plugin 'dense-analysis/ale'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'skywind3000/gutentags_plus'
 "Plugin 'junegunn/fzf'
@@ -79,7 +79,7 @@ set scrolloff=10
 set modeline
 set modelines=5
 set mmp=2000000
-set textwidth=80
+"set textwidth=80
 
 set nobackup
 set noswapfile
@@ -104,30 +104,30 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd Filetype python setlocal ts=4 sts=4 sw=4
 
 "whitespace
-set listchars=tab:\|\ ,trail:·
+set listchars=tab:\|\ ,trail:·     
 highlight SpecialKey ctermfg=DarkGray
 set nolist
 
 "ale settings
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
-let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 1
+"let g:ale_sign_error = '❌'
+"let g:ale_sign_warning = '⚠️'
+"let g:ale_sign_column_always = 1
+"let g:ale_set_highlights = 1
 
-let g:my_ale_toggle_enabled=1
+"let g:my_ale_toggle_enabled=1
 
-function! ALEToggle()
-  if g:my_ale_toggle_enabled
-    ALEDisable
-    let g:my_ale_toggle_enabled=0
-  else
-    ALEEnable
-    let g:my_ale_toggle_enabled=1
-  endif
-endfunction
+"function! ALEToggle()
+"  if g:my_ale_toggle_enabled
+"    ALEDisable
+"    let g:my_ale_toggle_enabled=0
+"  else
+"    ALEEnable
+"    let g:my_ale_toggle_enabled=1
+"  endif
+"endfunction
 
-nmap <silent> [c <Plug>(ale_previous_wrap)
-nmap <silent> ]c <Plug>(ale_next_wrap)
+"nmap <silent> [c <Plug>(ale_previous_wrap)
+"nmap <silent> ]c <Plug>(ale_next_wrap)
 
 " spelling
 set spell spelllang=en_us
@@ -226,8 +226,8 @@ set cursorline
 highlight CursorLine cterm=None ctermbg=None
 
 " Change Color when entering Insert Mode
-autocmd InsertEnter * highlight CursorLine cterm=underline ctermfg=None
-"autocmd InsertEnter * highlight CursorLine cterm=None ctermbg=DarkBlue ctermfg=White
+autocmd InsertEnter * highlight CursorLine cterm=None ctermfg=None ctermbg=DarkGrey
+"autocmd InsertEnter * highlight CursorLine cterm=underline ctermfg=None
 
 " Revert Color to default when leaving Insert Mode
 autocmd InsertLeave * highlight CursorLine cterm=None ctermbg=None ctermfg=None
@@ -260,6 +260,9 @@ noremap <leader>P :w<cr>:bp<cr>
 noremap <leader>x :bd<cr>
 
 
+" Justify a paragrah
+noremap <leader>y gpG
+
 " Highlight word under cursor - ,h
 noremap <leader>h *
 
@@ -272,8 +275,6 @@ noremap [N :cfirst<cr>
 " Goto last error - ]N
 noremap ]N :clast<cr>
 
-" Toggle ALE
-nnoremap <leader>a :call ALEToggle()<cr>
 
 " Run GoBuild - ,b or ,B
 noremap <leader>b :w<cr>:GoImports<cr>:GoBuild<cr>

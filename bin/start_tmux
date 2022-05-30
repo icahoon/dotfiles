@@ -8,9 +8,9 @@ function main() {
 
   tmux ls | egrep -q "^$name"
   if [ $? -ne 0 ]; then
-    exec tmux new -s $name
+    exec tmux -2 new -s $name
   else
-    exec tmux attach -d -t $name
+    exec tmux -2 attach -d -t $name
   fi
 }
 

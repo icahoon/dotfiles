@@ -9,17 +9,9 @@ export _blog_="${_dev_}/blog"
 
 export _notes_="${_dev_}/notes"
 export _examples_="${_dev_}/examples"
-export _research_="${_dev_}/research"
-export _sqlx_="${_dev_}/sqlx"
 
 export _notes_="${_dev_}/notes"
 export _tools_="${_dev_}/tools"
 export _dotfiles_="${_dev_}/dotfiles"
 export _examples_="${_dev_}/examples"
-
-export _tinymuck_="${_dev_}/tinymuck"
-export _tinymud_="${_dev_}/tinymud"
-
-export _arc_="${_dev_}/arc"
-
-export _jc_="${_dev_}/jumpcloud"
+export _courses_="${_dev_}/courses"
