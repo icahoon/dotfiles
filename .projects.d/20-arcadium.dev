@@ -8,3 +8,5 @@ export _arcade_="${_arcadium_}/arcade"
 export _core_="${_arcadium_}/core"
 export _mud_="${_arcadium_}/mud"
 export _assets_="${_arcadium_}/assets"
+
+export _f2048_="${_arcadium_}/fly-2048"
