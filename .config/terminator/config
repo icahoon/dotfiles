@@ -38,11 +38,10 @@
     show_titlebar = False
     scrollbar_position = hidden
     scrollback_infinite = True
-    palette = "#2e3436:#e83400:#00cd00:#ffff00:#4060ff:#cd00cd:#00cdcd:#ffffff:#404040:#e83400:#00ff00:#ffff00:#6394ff:#e89ee9:#00ffff:#ffffff"
+    palette = "#2e3436:#e83400:#00cd00:#ffff00:#3266c8:#cd00cd:#00cdcd:#ffffff:#404040:#e83400:#00ff00:#ffff00:#6394ff:#e89ee9:#00ffff:#ffffff"
     login_shell = True
     use_system_font = False
     copy_on_selection = True
-  [[--layout=icahoon]]
 [layouts]
   [[default]]
     [[[child0]]]

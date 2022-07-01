@@ -1,5 +1,5 @@
 if [ "$prompt_host" = "" ]; then
-  prompt_host="orion"
+  prompt_host="titan"
 fi
 if [ "$(uname)" = "Darwin" ]; then
   export PS1="\n\[\e[00;93m\t \[\e[00;94m\]\u@$prompt_host \[\e[00;92m\]\w\[\e[00;37m\]\n>\[\e[0m\] "
