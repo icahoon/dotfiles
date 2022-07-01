@@ -42,6 +42,7 @@
     login_shell = True
     use_system_font = False
     copy_on_selection = True
+  [[--layout=icahoon]]
 [layouts]
   [[default]]
     [[[child0]]]
